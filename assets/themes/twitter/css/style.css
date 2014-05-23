@@ -1,3 +1,72 @@
+body {
+    font-family: Cambria, Georgia, Times, "Times New Roman", serif;
+    letter-spacing: 0.01rem;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 22px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+}
+
+.img-header {
+    height: 400px;
+}
+
+.img-overlay {
+    margin-top: -120px;
+    color: white;
+}
+
+.content {
+    max-width: 40em;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+}
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.alert.alert-info {
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+    color: #31708f;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+a {
+    color: #428bca;
+    text-decoration: none;
+}
+
+.footer {
+    background-color: #eee;
+    height: 170px;
+    padding-top: 20px;
+}
+
+.footer img {
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    -webkit-background-clip: padding-box;
+    vertical-align:middle;
+}
+
+.footer span {
+    margin-left: 15px;
+}
+
+.footer .content {
+    width: 430px;
+}
+
 /* Custom container */
 .container-narrow {
   margin: 0 auto;

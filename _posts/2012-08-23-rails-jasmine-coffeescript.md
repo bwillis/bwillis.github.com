@@ -16,7 +16,7 @@ Getting setup with Javascript testing is not an easy task, but a framework like 
 3. Port existing Javascript Code to CoffeeScript
 4. Our first steps were to setup the infrastructure to perform testing with and against CoffeeScript files. Then we migrated our existing javascript source files to CoffeeScript.
 
-### CoffeeScript Enabled Testing & Continuous Integration (CI)
+## CoffeeScript Enabled Testing & Continuous Integration (CI)
 
 Our existing Jasmine tests used the [jasmine-gem](https://github.com/pivotal/jasmine-gem). The jasmine-gem worked well when we used static javascript files before adopting the asset pipeline. The existing Jasmine runner would run a standalone Rack webserver to serve static javascript files. Now, we wanted to allow both the tests and source files to be written in CoffeeScript and to load other precompiled assets like SCSS, so we re-evaluated our options. These are some of the gems available to accomplish this:
 
@@ -33,10 +33,10 @@ We chose the solution we thought was simple and we could easily support: [jasmin
 
 Running the jasmine tests headless for CI requires some additional help. We leveraged guard-jasmine which uses [phantomjs](http://phantomjs.org/) & [therubyracer](https://github.com/cowboyd/therubyracer) to perform headless testing.
 
-### Migration from Javascript to CoffeeScript
+## Migration from Javascript to CoffeeScript
 
 Our migration path to CoffeeScript was to start with a few small examples and then move incrementally. When changes would occur in our javascript files in features, it would be the job of the developer to convert the file and any tests over to CoffeeScript. We utilized tools like [js2coffee](http://js2coffee.org/) for larger files, but be warned it's not perfect.
 
-### Summary
+## Summary
 
 Setting up our Jasmine testing framework to work seamlessly with the asset pipeline with jasminerice was a major success. CoffeeScript and Jasmine tests are a great combination and make it very easy to understand. For more information on setting up jasminerice check out [this railscast](http://railscasts.com/episodes/261-testing-javascript-with-jasmine-revised) or the [guard jasmine documentation](https://github.com/netzpirat/guard-jasmine#rails-with-the-asset-pipeline-setup).

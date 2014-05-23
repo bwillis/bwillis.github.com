@@ -1,0 +1,19 @@
+---
+layout: page
+---
+{% include JB/setup %}
+
+<img src="/assets/themes/images/sherlock.jpg" class="img-header img-responsive" />
+
+<div class="content">
+
+    <div class="img-overlay">
+        <h1>A Study in Code</h1>
+    </div>
+
+    {% for post in site.posts %}
+    <h2><a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></h2>
+    <span>{{ post.date | date_to_string }}</span>
+    {% endfor %}
+
+</div>
