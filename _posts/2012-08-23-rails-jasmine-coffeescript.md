@@ -2,6 +2,7 @@
 title: Rails and Jasmine with CoffeeScript
 layout: post
 tags : [rails, jasmine, coffeescript]
+summary: An approach to testing Javascript in Rails using Jasmine.
 ---
 {% include JB/setup %}
 

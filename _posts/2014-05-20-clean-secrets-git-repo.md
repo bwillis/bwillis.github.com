@@ -2,6 +2,7 @@
 title: Clean Secrets from a Git Repo
 layout: post
 tags : [rails, git, github, sensitive data]
+summary: Remove sensitive data from Git before pushing your repo to Github.
 ---
 {% include JB/setup %}
 
