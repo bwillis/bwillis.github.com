@@ -1,28 +1,471 @@
----
-layout: nil
-title : RSS Feed
----
-
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
 <channel>
-        <title>{{ site.title }}</title>
-        <description>{{ site.title }} - {{ site.author.name }}</description>
-        <link>{{ site.production_url }}{{ site.rss_path }}</link>
-        <link>{{ site.production_url }}</link>
-        <lastBuildDate>{{ site.time | date_to_xmlschema }}</lastBuildDate>
-        <pubDate>{{ site.time | date_to_xmlschema }}</pubDate>
+        <title>A Study in Code</title>
+        <description>A Study in Code - Ben Willis</description>
+        <link>http://bwillis.github.io</link>
+        <link>http://bwillis.github.io</link>
+        <lastBuildDate>2014-05-28T20:49:11-07:00</lastBuildDate>
+        <pubDate>2014-05-28T20:49:11-07:00</pubDate>
         <ttl>1800</ttl>
 
-{% for post in site.posts %}
+
         <item>
-                <title>{{ post.title }}</title>
-                <description>{{ post.content | xml_escape }}</description>
-                <link>{{ site.production_url }}{{ post.url }}</link>
-                <guid>{{ site.production_url }}{{ post.id }}</guid>
-                <pubDate>{{ post.date | date_to_xmlschema }}</pubDate>
+                <title>Including Github Repo Code in Jekyll</title>
+                <description>&lt;p&gt;Including code references in technical blogs is important to explain and demonstrate coding concepts. The typical way to do this is to embed &lt;a href=&quot;https://gist.github.com/&quot;&gt;Gists&lt;/a&gt; into your posts. However, I am writing several posts that all reference a public Github repo, not snippets that are inside Gists. Also, being able to reference code in a larger code base can help provide more context if necessary. Taking inspiration from an existing &lt;a href=&quot;http://blog.55minutes.com/2012/03/liquid-gist-tag-for-jekyll/&quot;&gt;Liquid Gist Tag&lt;/a&gt;, I created the Github Sample Tag.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a href=&quot;https://github.com/bwillis/jekyll-github-sample&quot;&gt;Github Sample Tag&lt;/a&gt; is a Jekyll tag that allows bloggers to include a sample of a file hosted on Github. Here is an example of it in use:&lt;/p&gt;
+
+&lt;div class=&quot;github-sample-reference&quot;&gt;
+  &lt;div class=&quot;author-info&quot;&gt;
+    &lt;a href=&quot;https://github.com/bwillis/jekyll-github-sample/blob/b989363c0432cefacd10a66943f0f04cdd0b6839/github_sample_tag.rb&quot;&gt;This Github Sample&lt;/a&gt; is by &lt;a href=&quot;https://github.com/bwillis&quot;&gt;bwillis&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;meta-info&quot;&gt;
+    github_sample_tag.rb &lt;a href=&quot;https://github.com/bwillis/jekyll-github-sample/blob/b989363c0432cefacd10a66943f0f04cdd0b6839/github_sample_tag.rb&quot;&gt;view&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/bwillis/jekyll-github-sample/b989363c0432cefacd10a66943f0f04cdd0b6839/github_sample_tag.rb&quot;&gt;raw&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;determine_line_numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil?&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil?&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;elsif&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil?&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This example is actually 3 different tags in play. The first is the &lt;code&gt;github_sample&lt;/code&gt;, which on it’s own just retrieves a portion of a raw github file:&lt;/p&gt;
+
+&lt;pre&gt;
+def determine_line_numbers(first, last)
+  if first.nil? &amp;amp;&amp;amp; last.nil?
+    first = 0
+    last = -1
+  elsif last.nil?
+    last = first
+  end
+
+  [first.to_i, last.to_i]
+end
+
+&lt;/pre&gt;
+
+&lt;p&gt;The second is the builtin &lt;code&gt;highlight&lt;/code&gt; block with the appropriate language format set:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;determine_line_numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil?&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil?&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;elsif&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil?&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt; 
+&lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The third piece is the &lt;code&gt;github_sample_ref&lt;/code&gt; tag, which can be used on it’s own like so:&lt;/p&gt;
+
+&lt;div class=&quot;github-sample-reference&quot;&gt;
+  &lt;div class=&quot;author-info&quot;&gt;
+    &lt;a href=&quot;https://github.com/bwillis/jekyll-github-sample/blob/b989363c0432cefacd10a66943f0f04cdd0b6839/github_sample_tag.rb&quot;&gt;This Github Sample&lt;/a&gt; is by &lt;a href=&quot;https://github.com/bwillis&quot;&gt;bwillis&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;meta-info&quot;&gt;
+    github_sample_tag.rb &lt;a href=&quot;https://github.com/bwillis/jekyll-github-sample/blob/b989363c0432cefacd10a66943f0f04cdd0b6839/github_sample_tag.rb&quot;&gt;view&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/bwillis/jekyll-github-sample/b989363c0432cefacd10a66943f0f04cdd0b6839/github_sample_tag.rb&quot;&gt;raw&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;I’ll use the Github Sample from the readme to show the syntax:&lt;/p&gt;
+
+&lt;div class=&quot;github-sample-reference&quot;&gt;
+  &lt;div class=&quot;author-info&quot;&gt;
+    &lt;a href=&quot;https://github.com/bwillis/jekyll-github-sample/blob/4cfc8108f5bdacb7383877cc5b14883e0770237f/README.md&quot;&gt;This Github Sample&lt;/a&gt; is by &lt;a href=&quot;https://github.com/bwillis&quot;&gt;bwillis&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;meta-info&quot;&gt;
+    README.md &lt;a href=&quot;https://github.com/bwillis/jekyll-github-sample/blob/4cfc8108f5bdacb7383877cc5b14883e0770237f/README.md&quot;&gt;view&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/bwillis/jekyll-github-sample/4cfc8108f5bdacb7383877cc5b14883e0770237f/README.md&quot;&gt;raw&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;
+&lt;pre&gt;{% github_sample_ref /bwillis/versioncake/989237901cb873f96df12be48cbf1239be496bd7/Appraisals %}
+{% highlight ruby %}
+{% github_sample /bwillis/versioncake/989237901cb873f96df12be48cbf1239be496bd7/Appraisals 0 5 %}
+{% endhighlight %}
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;alert alert-info&quot;&gt;
+&lt;b&gt;Note&lt;/b&gt; It is best to use the link to the file with a commit hash in it. This will avoid updating code samples in your blog on each deployment.
+&lt;/div&gt;
+</description>
+                <link>http://bwillis.github.io/2014/05/28/include-github-repo-code-in-jekyll</link>
+                <guid>http://bwillis.github.io/2014/05/28/include-github-repo-code-in-jekyll</guid>
+                <pubDate>2014-05-28T00:00:00-07:00</pubDate>
         </item>
-{% endfor %}
+
+        <item>
+                <title>Speeding Up Your Rails Web Site</title>
+                <description>
+&lt;div class=&quot;alert alert-info&quot;&gt;
+&lt;b&gt;Hello!&lt;/b&gt; This is an in-depth post that will be getting filled in over time. Most of these techniques are available in my project &lt;a href=&quot;https://github.com/bwillis/soinformed&quot;&gt;SoInformed&lt;/a&gt;.
+&lt;/div&gt;
+
+&lt;p&gt;
+Optimizing web sites is complex, but necessary topic to understand as web developers to achieve faster web applications. There are many well known resources that have identified best practices to improve website performance. Many web frameworks have made these tasks easier to abstract the complexity away, but not all of them are well documented, some features are hidden and some are not possible at the framework level.
+
+
+Yahoo! has an excellent reference that explains different ways to speed up your website called &lt;a href=&quot;https://developer.yahoo.com/performance/rules.html&quot;&gt;Best Practices for Speeding Up Your Web Site&lt;/a&gt;.
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;num_http&quot; href=&quot;#num_http&quot;&gt;Make Fewer HTTP Requests&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#num_http&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+  It is optimal to make as few requests to the server when loading pages.
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;b&gt;Combined files&lt;/b&gt; - Rails attempts to join as many assets together automatically. With the asset pipeline and the application.css and application.js manifest files, in production all javascript and css files are joined into a single file.
+&lt;/p&gt;
+
+&lt;p&gt;layouts/application.html.erb&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;erb&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stylesheet_link_tag&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;application&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:media&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;all&amp;quot;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;javascript_include_tag&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;application&amp;quot;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+  &lt;b&gt;CSS Sprites&lt;/b&gt; - As for images, there is no default way in Rails that joins image requests together, aka spriting. To do this you need to use a library such as &lt;a href=&quot;http://compass-style.org/help/tutorials/spriting/&quot;&gt;Compass&lt;/a&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;application.css.scss&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;scss&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;@import&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;logos/*.png&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;@include&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt; all-logos-sprites&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;some_file.html.erb&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;erb&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;link_to&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;http://foursquare.com&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:class&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;logos-foursquare-powered&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;_blank&amp;#39;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+ &lt;b&gt;Inline images&lt;/b&gt; - This is a way to delivery an image Base64 encoded in a url. The way to achieve this in Rails is to leverage the &lt;a href=&quot;https://github.com/rails/sass-rails&quot;&gt;sass-rails&lt;/a&gt; gem and use the helper &lt;code&gt;asset-data-url&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;scss&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;background-image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;asset-data-url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$relative-asset-path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// background-image: url(data:image/png;base64,iVBORw0K);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;&lt;a name=&quot;cdn&quot; href=&quot;#cdn&quot;&gt;Use a Content Delivery Network (CDN)&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#cdn&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;expires&quot; href=&quot;#expires&quot;&gt;Add Expires or Cache-Control Header&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#expires&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;gzip&quot; href=&quot;#gzip&quot;&gt;Gzip Components&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#gzip&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;css_top&quot; href=&quot;#css_top&quot;&gt;Put Stylesheets at Top&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#css_top&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;js_bottom&quot; href=&quot;#js_bottom&quot;&gt;Put Scripts at Bottom&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#js_bottom&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;css_expressions&quot; href=&quot;#css_expressions&quot;&gt;Avoid CSS Expressions&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#css_expressions&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;external&quot; href=&quot;#external&quot;&gt;Make JavaScript and CSS External&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#external&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;dns_lookups&quot; href=&quot;#dns_lookups&quot;&gt;Reduce DNS Lookups&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#dns_lookups&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;minify&quot; href=&quot;#minify&quot;&gt;Minify JavaScript and CSS&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#minify&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;redirects&quot; href=&quot;#redirects&quot;&gt;Avoid Redirects&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#redirects&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;js_dupes&quot; href=&quot;#js_dupes&quot;&gt;Remove Duplicate Scripts&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#js_dupes&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;etags&quot; href=&quot;#etags&quot;&gt;Configure ETags&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#etags&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;cacheajax&quot; href=&quot;#cacheajax&quot;&gt;Make Ajax Cacheable&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#cacheajax&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;flush&quot; href=&quot;#flush&quot;&gt;Flush Buffer Early&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#flush&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;ajax_get&quot; href=&quot;#ajax_get&quot;&gt;Use GET for Ajax Requests&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#ajax_get&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;postload&quot; href=&quot;#postload&quot;&gt;Postload Components&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#postload&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;preload&quot; href=&quot;#preload&quot;&gt;Preload Components&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#preload&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;min_dom&quot; href=&quot;#min_dom&quot;&gt;Reduce the Number of DOM Elements&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#min_dom&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;split&quot; href=&quot;#split&quot;&gt;Split Components Across Domains&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#split&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;iframes&quot; href=&quot;#iframes&quot;&gt;Minimize Number of iframes&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#iframes&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;no404&quot; href=&quot;#no404&quot;&gt;Avoid 404s&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#no404&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;cookie_size&quot; href=&quot;#cookie_size&quot;&gt;Reduce Cookie Size&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#cookie_size&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;cookie_free&quot; href=&quot;#cookie_free&quot;&gt;Use Cookie-Free Domains for Components&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#cookie_free&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;dom_access&quot; href=&quot;#dom_access&quot;&gt;Minimize DOM Access&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#dom_access&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;events&quot; href=&quot;#events&quot;&gt;Develop Smart Event Handlers&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#events&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;csslink&quot; href=&quot;#csslink&quot;&gt;Choose &lt;link /&gt; Over @import&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#csslink&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;no_filters&quot; href=&quot;#no_filters&quot;&gt;Avoid Filters&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#no_filters&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;opt_images&quot; href=&quot;#opt_images&quot;&gt;Optimize Images&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#opt_images&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;opt_sprites&quot; href=&quot;#opt_sprites&quot;&gt;Optimize CSS Sprites&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#opt_sprites&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;no_scale&quot; href=&quot;#no_scale&quot;&gt;Do Not Scale Images in HTML&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#no_scale&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;favicon&quot; href=&quot;#favicon&quot;&gt;Make favicon.ico Small and Cacheable&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#favicon&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;under25&quot; href=&quot;#under25&quot;&gt;Keep Components Under 25 KB&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#under25&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;multipart&quot; href=&quot;#multipart&quot;&gt;Pack Components Into a Multipart Document&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#multipart&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;emptysrc&quot; href=&quot;#emptysrc&quot;&gt;Avoid Empty Image src&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#emptysrc&quot;&gt;source&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+</description>
+                <link>http://bwillis.github.io/2014/05/27/speeding-up-your-rails-web-site</link>
+                <guid>http://bwillis.github.io/2014/05/27/speeding-up-your-rails-web-site</guid>
+                <pubDate>2014-05-27T00:00:00-07:00</pubDate>
+        </item>
+
+        <item>
+                <title>Clean Secrets from a Git Repo</title>
+                <description>
+&lt;p&gt;I decided to publish a personal project called &lt;a href=&quot;https://github.com/bwillis/soinformed&quot;&gt;SoInformed to Github&lt;/a&gt;. SoInformed is a &lt;a href=&quot;https://soinformed.herokuapp.com&quot;&gt;live Rails application&lt;/a&gt; that connects to several third-party services, such as Twilio, Foursquare, NewRelic and it runs on Heroku. Making a local project public is pretty standard, but you should not blindly push a project without ensuring your secrets are hidden.&lt;/p&gt;
+
+&lt;h2 id=&quot;know-what-and-where-your-secrets-are&quot;&gt;Know what and where your secrets are&lt;/h2&gt;
+
+&lt;p&gt;Rails uses YAML configuration files to store most application secrets. As of Rails 4, you even have an explicit &lt;code&gt;config/secrets.yml&lt;/code&gt;. Here are some common application secrets locations:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/bwillis/soinformed/blob/master/config/secrets.yml&quot;&gt;config/secrets.yml&lt;/a&gt;: Introduced in Rails 4, should contain most if not all application secrets&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/bwillis/soinformed/blob/master/config/database.yml&quot;&gt;config/database.yml&lt;/a&gt;: Database specific usernames, passwords and other configuration&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/bwillis/soinformed/blob/master/config/newrelic.yml&quot;&gt;config/newrelic.yml&lt;/a&gt;: Newrelic configuration, specifically the license key is sensitive here&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/bwillis/soinformed/blob/master/config/asset_sync.yml&quot;&gt;config/asset_sync.yml&lt;/a&gt;: Asset Sync gem configuration for Amazon AWS integration&lt;/li&gt;
+  &lt;li&gt;config/initializers/secret_token.rb: It’s worth noting that pre Rails 4.0 applications kept the secret_token in this ruby file&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These configuration files are great, but it doesn’t stop you from leaking sensitive data into your application. Review your application, specifically around third party services, and ensure no sensitive data is missed, for example, with SoInformed, I had directly used my personal phone number early on when testing Twilio integration.&lt;/p&gt;
+
+&lt;h2 id=&quot;extract-secrets-out-of-committed-code&quot;&gt;Extract secrets out of committed code&lt;/h2&gt;
+
+&lt;p&gt;There are many approaches to moving secrets out of code, but the general best practice is environment variables. Since secrets are commonly kept in YAML files, and they are processed with ERB, you can use ruby to inject the environment variables.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;foursquare_app_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;%= ENV[&amp;#39;FOURSQUARE_APP_ID&amp;#39;] %&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;sx&quot;&gt;foursquare_app_secret: &amp;lt;%=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ENV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;FOURSQUARE_APP_SECRET&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;sx&quot;&gt;%&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;sx&quot;&gt;foursquare_app_push_secret: &amp;lt;%= ENV[&amp;#39;FOURSQUARE_PUSH_SECRET&amp;#39;] %&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;search-git-history-for-secrets&quot;&gt;Search git history for secrets&lt;/h2&gt;
+
+&lt;p&gt;Removing secrets from code is one thing, but if you committed the secret in the past it’s now a part of version control. For Git, I used &lt;code&gt;git grep&lt;/code&gt; to search for all unique secret strings in the repository to make sure I hadn’t committed them in the past.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;git grep YOUR_SECRET $(git rev-list —all)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now that you know which files have the secrets in the history, you can go about removing them from your history.&lt;/p&gt;
+
+&lt;h2 id=&quot;purge-your-history-of-secrets&quot;&gt;Purge your history of secrets&lt;/h2&gt;
+&lt;p&gt;Github has a nice writeup on &lt;a href=&quot;https://help.github.com/articles/remove-sensitive-data&quot;&gt;how to remove sensitive data&lt;/a&gt;. I used the tool &lt;a href=&quot;https://rtyley.github.io/bfg-repo-cleaner/&quot;&gt;BFG Repo-Cleaner&lt;/a&gt; because it was convenient and easy to use. Using BFG I ran the following command for each file history I wanted to clear:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;java -jar bfg-1.11.6.jar --delete-files application.yml&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;For more information on BFG options see their &lt;a href=&quot;https://rtyley.github.io/bfg-repo-cleaner/&quot;&gt;Github repo&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;This is changing history, so if your code is already public, you will have to force push this. Also, if your code is already public you cannot be sure that someone does not already have the repo cloned so you should change/regenerate all your secrets.&lt;/p&gt;
+</description>
+                <link>http://bwillis.github.io/2014/05/20/clean-secrets-git-repo</link>
+                <guid>http://bwillis.github.io/2014/05/20/clean-secrets-git-repo</guid>
+                <pubDate>2014-05-20T00:00:00-07:00</pubDate>
+        </item>
+
+        <item>
+                <title>Rails and Jasmine with CoffeeScript</title>
+                <description>
+&lt;div class=&quot;alert alert-info&quot;&gt;
+&lt;b&gt;Hello!&lt;/b&gt; My original post was on http://chill.manilla.com, but since Manilla has been shutdown I have moved it here. It has not been updated, but is still a viable working strategy for javascript testing.
+&lt;/div&gt;
+
+&lt;p&gt;Getting setup with Javascript testing is not an easy task, but a framework like &lt;a href=&quot;http://pivotal.github.com/jasmine/&quot;&gt;Jasmine&lt;/a&gt; makes it a lot less painful. However, when we enabled the asset pipeline on manilla.com, we also wanted to take full advantage of &lt;a href=&quot;http://coffeescript.org/&quot;&gt;CoffeeScript&lt;/a&gt;. CoffeeScript is a great abstraction on Javascript and we wanted to leverage those benefits anywhere we could in our application and our tests. Our goals in utilizing CoffeeScript were:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Write Jasmine tests against CoffeeScript and &lt;a href=&quot;http://pivotallabs.com/users/andrew/blog/articles/1160-standup-2-11-2010-sass-with-jasmine&quot;&gt;SCSS&lt;/a&gt; assets&lt;/li&gt;
+  &lt;li&gt;Write Jasmine tests in CoffeeScript&lt;/li&gt;
+  &lt;li&gt;Port existing Javascript Code to CoffeeScript&lt;/li&gt;
+  &lt;li&gt;Our first steps were to setup the infrastructure to perform testing with and against CoffeeScript files. Then we migrated our existing javascript source files to CoffeeScript.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;coffeescript-enabled-testing--continuous-integration-ci&quot;&gt;CoffeeScript Enabled Testing &amp;amp; Continuous Integration (CI)&lt;/h2&gt;
+
+&lt;p&gt;Our existing Jasmine tests used the &lt;a href=&quot;https://github.com/pivotal/jasmine-gem&quot;&gt;jasmine-gem&lt;/a&gt;. The jasmine-gem worked well when we used static javascript files before adopting the asset pipeline. The existing Jasmine runner would run a standalone Rack webserver to serve static javascript files. Now, we wanted to allow both the tests and source files to be written in CoffeeScript and to load other precompiled assets like SCSS, so we re-evaluated our options. These are some of the gems available to accomplish this:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/guard/guard&quot;&gt;guard&lt;/a&gt;, &lt;a href=&quot;https://github.com/guard/guard-coffeescript&quot;&gt;guard-coffeescript&lt;/a&gt; &amp;amp; &lt;a href=&quot;https://github.com/guard/guard-livereload&quot;&gt;guard-livereload&lt;/a&gt;: watch CoffeeScript files and automatically compile to javascript files which are served by the jasmine runner&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/pivotal/jasmine-gem&quot;&gt;jasmine-gem&lt;/a&gt;: with a CoffeeScript rack middleware interpreter-this looks to be included in Jasmine 1.2 but there are not a lot of details on how to use it&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/bradphelan/jasminerice&quot;&gt;jasminerice&lt;/a&gt;: leverage Rails asset pipeline&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;We chose the solution we thought was simple and we could easily support: &lt;a href=&quot;https://github.com/bradphelan/jasminerice&quot;&gt;jasminerice&lt;/a&gt;. The simplicity of utilizing the Rails Asset Pipeline to compile any assets, not just CoffeeScript, but also SCSS files made it ideal to run our Jasmine tests. To get started you have to:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;include jasminerice gem in the dev and testing groups &lt;img src=&quot;/assets/themes//images/gemfile.png&quot; class=&quot;img-responsive center-block&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;edit your jasmine spec manifest in spec/javascripts/spec.js.coffee to include your test files (optionally include any scss/sass files in spec/javascripts/spec.css) &lt;img src=&quot;/assets/themes//images/asset-pipeline-manifest.png&quot; class=&quot;img-responsive center-block&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;write your tests in CoffeeScript including any dependencies &lt;img src=&quot;/assets/themes//images/jasmine-coffeescript-spec.png&quot; class=&quot;img-responsive center-block&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;visit http://localhost:3000/jasmine and watch your tests run &lt;img src=&quot;/assets/themes//images/jasmine-passing-specs.png&quot; class=&quot;img-responsive center-block&quot; /&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Running the jasmine tests headless for CI requires some additional help. We leveraged guard-jasmine which uses &lt;a href=&quot;http://phantomjs.org/&quot;&gt;phantomjs&lt;/a&gt; &amp;amp; &lt;a href=&quot;https://github.com/cowboyd/therubyracer&quot;&gt;therubyracer&lt;/a&gt; to perform headless testing.&lt;/p&gt;
+
+&lt;h2 id=&quot;migration-from-javascript-to-coffeescript&quot;&gt;Migration from Javascript to CoffeeScript&lt;/h2&gt;
+
+&lt;p&gt;Our migration path to CoffeeScript was to start with a few small examples and then move incrementally. When changes would occur in our javascript files in features, it would be the job of the developer to convert the file and any tests over to CoffeeScript. We utilized tools like &lt;a href=&quot;http://js2coffee.org/&quot;&gt;js2coffee&lt;/a&gt; for larger files, but be warned it’s not perfect.&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;Setting up our Jasmine testing framework to work seamlessly with the asset pipeline with jasminerice was a major success. CoffeeScript and Jasmine tests are a great combination and make it very easy to understand. For more information on setting up jasminerice check out &lt;a href=&quot;http://railscasts.com/episodes/261-testing-javascript-with-jasmine-revised&quot;&gt;this railscast&lt;/a&gt; or the &lt;a href=&quot;https://github.com/netzpirat/guard-jasmine#rails-with-the-asset-pipeline-setup&quot;&gt;guard jasmine documentation&lt;/a&gt;.&lt;/p&gt;
+</description>
+                <link>http://bwillis.github.io/2012/08/23/rails-jasmine-coffeescript</link>
+                <guid>http://bwillis.github.io/2012/08/23/rails-jasmine-coffeescript</guid>
+                <pubDate>2012-08-23T00:00:00-07:00</pubDate>
+        </item>
+
 
 </channel>
 </rss>

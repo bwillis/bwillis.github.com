@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Clean Secrets from a Git Repo</title>
+    
+    
+    <meta name="author" content="Ben Willis">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
+    <link href="/assets/themes/ben/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/ben/css/syntax.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+</head>
+
+<body>
+
+
+<div class="content">
+
+    <div class="page-header">
+      <h1>Clean Secrets from a Git Repo </h1>
+    </div>
+
+    <div class="date">
+        <span>20 May 2014</span>
+    </div>
+
+    
+<p>I decided to publish a personal project called <a href="https://github.com/bwillis/soinformed">SoInformed to Github</a>. SoInformed is a <a href="https://soinformed.herokuapp.com">live Rails application</a> that connects to several third-party services, such as Twilio, Foursquare, NewRelic and it runs on Heroku. Making a local project public is pretty standard, but you should not blindly push a project without ensuring your secrets are hidden.</p>
+
+<h2 id="know-what-and-where-your-secrets-are">Know what and where your secrets are</h2>
+
+<p>Rails uses YAML configuration files to store most application secrets. As of Rails 4, you even have an explicit <code>config/secrets.yml</code>. Here are some common application secrets locations:</p>
+
+<ul>
+  <li><a href="https://github.com/bwillis/soinformed/blob/master/config/secrets.yml">config/secrets.yml</a>: Introduced in Rails 4, should contain most if not all application secrets</li>
+  <li><a href="https://github.com/bwillis/soinformed/blob/master/config/database.yml">config/database.yml</a>: Database specific usernames, passwords and other configuration</li>
+  <li><a href="https://github.com/bwillis/soinformed/blob/master/config/newrelic.yml">config/newrelic.yml</a>: Newrelic configuration, specifically the license key is sensitive here</li>
+  <li><a href="https://github.com/bwillis/soinformed/blob/master/config/asset_sync.yml">config/asset_sync.yml</a>: Asset Sync gem configuration for Amazon AWS integration</li>
+  <li>config/initializers/secret_token.rb: It’s worth noting that pre Rails 4.0 applications kept the secret_token in this ruby file</li>
+</ul>
+
+<p>These configuration files are great, but it doesn’t stop you from leaking sensitive data into your application. Review your application, specifically around third party services, and ensure no sensitive data is missed, for example, with SoInformed, I had directly used my personal phone number early on when testing Twilio integration.</p>
+
+<h2 id="extract-secrets-out-of-committed-code">Extract secrets out of committed code</h2>
+
+<p>There are many approaches to moving secrets out of code, but the general best practice is environment variables. Since secrets are commonly kept in YAML files, and they are processed with ERB, you can use ruby to inject the environment variables.</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="n">foursquare_app_id</span><span class="p">:</span> <span class="o">&lt;</span><span class="sx">%= ENV[&#39;FOURSQUARE_APP_ID&#39;] %&gt;</span>
+<span class="sx">foursquare_app_secret: &lt;%=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;FOURSQUARE_APP_SECRET&#39;</span><span class="o">]</span> <span class="sx">%&gt;</span>
+<span class="sx">foursquare_app_push_secret: &lt;%= ENV[&#39;FOURSQUARE_PUSH_SECRET&#39;] %&gt;</span>
+</code></pre></div>
+
+<h2 id="search-git-history-for-secrets">Search git history for secrets</h2>
+
+<p>Removing secrets from code is one thing, but if you committed the secret in the past it’s now a part of version control. For Git, I used <code>git grep</code> to search for all unique secret strings in the repository to make sure I hadn’t committed them in the past.</p>
+
+<p><code>git grep YOUR_SECRET $(git rev-list —all)</code></p>
+
+<p>Now that you know which files have the secrets in the history, you can go about removing them from your history.</p>
+
+<h2 id="purge-your-history-of-secrets">Purge your history of secrets</h2>
+<p>Github has a nice writeup on <a href="https://help.github.com/articles/remove-sensitive-data">how to remove sensitive data</a>. I used the tool <a href="https://rtyley.github.io/bfg-repo-cleaner/">BFG Repo-Cleaner</a> because it was convenient and easy to use. Using BFG I ran the following command for each file history I wanted to clear:</p>
+
+<p><code>java -jar bfg-1.11.6.jar --delete-files application.yml</code></p>
+
+<p>For more information on BFG options see their <a href="https://rtyley.github.io/bfg-repo-cleaner/">Github repo</a>.</p>
+
+<p>This is changing history, so if your code is already public, you will have to force push this. Also, if your code is already public you cannot be sure that someone does not already have the repo cloned so you should change/regenerate all your secrets.</p>
+
+
+<!--    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'astudyincode'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+ -->
+
+</div>
+
+<div class="footer">
+    <div class="content">
+        <img src="https://www.gravatar.com/avatar/fd65c1fce417e58621069840730c806f?s=128&d=identicon&r=PG" />
+        <span>
+            Ben Willis - <a href="https://github.com/bwillis">Github</a> <a href="https://www.linkedin.com/in/benjaminwillis">LinkedIn</a>
+        </span>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>
+

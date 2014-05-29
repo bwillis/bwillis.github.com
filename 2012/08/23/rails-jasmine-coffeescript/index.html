@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Rails and Jasmine with CoffeeScript</title>
+    
+    
+    <meta name="author" content="Ben Willis">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
+    <link href="/assets/themes/ben/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/ben/css/syntax.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+</head>
+
+<body>
+
+
+<div class="content">
+
+    <div class="page-header">
+      <h1>Rails and Jasmine with CoffeeScript </h1>
+    </div>
+
+    <div class="date">
+        <span>23 August 2012</span>
+    </div>
+
+    
+<div class="alert alert-info">
+<b>Hello!</b> My original post was on http://chill.manilla.com, but since Manilla has been shutdown I have moved it here. It has not been updated, but is still a viable working strategy for javascript testing.
+</div>
+
+<p>Getting setup with Javascript testing is not an easy task, but a framework like <a href="http://pivotal.github.com/jasmine/">Jasmine</a> makes it a lot less painful. However, when we enabled the asset pipeline on manilla.com, we also wanted to take full advantage of <a href="http://coffeescript.org/">CoffeeScript</a>. CoffeeScript is a great abstraction on Javascript and we wanted to leverage those benefits anywhere we could in our application and our tests. Our goals in utilizing CoffeeScript were:</p>
+
+<ol>
+  <li>Write Jasmine tests against CoffeeScript and <a href="http://pivotallabs.com/users/andrew/blog/articles/1160-standup-2-11-2010-sass-with-jasmine">SCSS</a> assets</li>
+  <li>Write Jasmine tests in CoffeeScript</li>
+  <li>Port existing Javascript Code to CoffeeScript</li>
+  <li>Our first steps were to setup the infrastructure to perform testing with and against CoffeeScript files. Then we migrated our existing javascript source files to CoffeeScript.</li>
+</ol>
+
+<h2 id="coffeescript-enabled-testing--continuous-integration-ci">CoffeeScript Enabled Testing &amp; Continuous Integration (CI)</h2>
+
+<p>Our existing Jasmine tests used the <a href="https://github.com/pivotal/jasmine-gem">jasmine-gem</a>. The jasmine-gem worked well when we used static javascript files before adopting the asset pipeline. The existing Jasmine runner would run a standalone Rack webserver to serve static javascript files. Now, we wanted to allow both the tests and source files to be written in CoffeeScript and to load other precompiled assets like SCSS, so we re-evaluated our options. These are some of the gems available to accomplish this:</p>
+
+<ul>
+  <li><a href="https://github.com/guard/guard">guard</a>, <a href="https://github.com/guard/guard-coffeescript">guard-coffeescript</a> &amp; <a href="https://github.com/guard/guard-livereload">guard-livereload</a>: watch CoffeeScript files and automatically compile to javascript files which are served by the jasmine runner</li>
+  <li><a href="https://github.com/pivotal/jasmine-gem">jasmine-gem</a>: with a CoffeeScript rack middleware interpreter-this looks to be included in Jasmine 1.2 but there are not a lot of details on how to use it</li>
+  <li><a href="https://github.com/bradphelan/jasminerice">jasminerice</a>: leverage Rails asset pipeline</li>
+</ul>
+
+<p>We chose the solution we thought was simple and we could easily support: <a href="https://github.com/bradphelan/jasminerice">jasminerice</a>. The simplicity of utilizing the Rails Asset Pipeline to compile any assets, not just CoffeeScript, but also SCSS files made it ideal to run our Jasmine tests. To get started you have to:</p>
+
+<ol>
+  <li>include jasminerice gem in the dev and testing groups <img src="/assets/themes//images/gemfile.png" class="img-responsive center-block" /></li>
+  <li>edit your jasmine spec manifest in spec/javascripts/spec.js.coffee to include your test files (optionally include any scss/sass files in spec/javascripts/spec.css) <img src="/assets/themes//images/asset-pipeline-manifest.png" class="img-responsive center-block" /></li>
+  <li>write your tests in CoffeeScript including any dependencies <img src="/assets/themes//images/jasmine-coffeescript-spec.png" class="img-responsive center-block" /></li>
+  <li>visit http://localhost:3000/jasmine and watch your tests run <img src="/assets/themes//images/jasmine-passing-specs.png" class="img-responsive center-block" /></li>
+</ol>
+
+<p>Running the jasmine tests headless for CI requires some additional help. We leveraged guard-jasmine which uses <a href="http://phantomjs.org/">phantomjs</a> &amp; <a href="https://github.com/cowboyd/therubyracer">therubyracer</a> to perform headless testing.</p>
+
+<h2 id="migration-from-javascript-to-coffeescript">Migration from Javascript to CoffeeScript</h2>
+
+<p>Our migration path to CoffeeScript was to start with a few small examples and then move incrementally. When changes would occur in our javascript files in features, it would be the job of the developer to convert the file and any tests over to CoffeeScript. We utilized tools like <a href="http://js2coffee.org/">js2coffee</a> for larger files, but be warned it’s not perfect.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>Setting up our Jasmine testing framework to work seamlessly with the asset pipeline with jasminerice was a major success. CoffeeScript and Jasmine tests are a great combination and make it very easy to understand. For more information on setting up jasminerice check out <a href="http://railscasts.com/episodes/261-testing-javascript-with-jasmine-revised">this railscast</a> or the <a href="https://github.com/netzpirat/guard-jasmine#rails-with-the-asset-pipeline-setup">guard jasmine documentation</a>.</p>
+
+
+<!--    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'astudyincode'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+ -->
+
+</div>
+
+<div class="footer">
+    <div class="content">
+        <img src="https://www.gravatar.com/avatar/fd65c1fce417e58621069840730c806f?s=128&d=identicon&r=PG" />
+        <span>
+            Ben Willis - <a href="https://github.com/bwillis">Github</a> <a href="https://www.linkedin.com/in/benjaminwillis">LinkedIn</a>
+        </span>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>
+

@@ -1,8 +1,14 @@
----
-# Remember to set production_url in your _config.yml file!
-title : Sitemap
----
-{% for page in site.pages %}
-{{site.production_url}}{{ page.url }}{% endfor %}
-{% for post in site.posts %}
-{{site.production_url}}{{ post.url }}{% endfor %}
+
+http://bwillis.github.io/archive.html
+http://bwillis.github.io/atom.xml
+http://bwillis.github.io/categories.html
+http://bwillis.github.io/index.html
+http://bwillis.github.io/pages.html
+http://bwillis.github.io/rss.xml
+http://bwillis.github.io/sitemap.txt
+http://bwillis.github.io/tags.html
+
+http://bwillis.github.io/2014/05/28/include-github-repo-code-in-jekyll
+http://bwillis.github.io/2014/05/27/speeding-up-your-rails-web-site
+http://bwillis.github.io/2014/05/20/clean-secrets-git-repo
+http://bwillis.github.io/2012/08/23/rails-jasmine-coffeescript

@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Including Github Repo Code in Jekyll</title>
+    
+    
+    <meta name="author" content="Ben Willis">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
+    <link href="/assets/themes/ben/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/ben/css/syntax.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+</head>
+
+<body>
+
+
+<div class="content">
+
+    <div class="page-header">
+      <h1>Including Github Repo Code in Jekyll </h1>
+    </div>
+
+    <div class="date">
+        <span>28 May 2014</span>
+    </div>
+
+    <p>Including code references in technical blogs is important to explain and demonstrate coding concepts. The typical way to do this is to embed <a href="https://gist.github.com/">Gists</a> into your posts. However, I am writing several posts that all reference a public Github repo, not snippets that are inside Gists. Also, being able to reference code in a larger code base can help provide more context if necessary. Taking inspiration from an existing <a href="http://blog.55minutes.com/2012/03/liquid-gist-tag-for-jekyll/">Liquid Gist Tag</a>, I created the Github Sample Tag.</p>
+
+<p>The <a href="https://github.com/bwillis/jekyll-github-sample">Github Sample Tag</a> is a Jekyll tag that allows bloggers to include a sample of a file hosted on Github. Here is an example of it in use:</p>
+
+<div class="github-sample-reference">
+  <div class="author-info">
+    <a href="https://github.com/bwillis/jekyll-github-sample/blob/b989363c0432cefacd10a66943f0f04cdd0b6839/github_sample_tag.rb">This Github Sample</a> is by <a href="https://github.com/bwillis">bwillis</a>
+  </div>
+  <div class="meta-info">
+    github_sample_tag.rb <a href="https://github.com/bwillis/jekyll-github-sample/blob/b989363c0432cefacd10a66943f0f04cdd0b6839/github_sample_tag.rb">view</a> <a href="https://raw.githubusercontent.com/bwillis/jekyll-github-sample/b989363c0432cefacd10a66943f0f04cdd0b6839/github_sample_tag.rb">raw</a>
+  </div>
+</div>
+
+<div class="highlight"><pre><code class="ruby"><span class="lineno"> 1</span> <span class="k">def</span> <span class="nf">determine_line_numbers</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+<span class="lineno"> 2</span>   <span class="k">if</span> <span class="n">first</span><span class="o">.</span><span class="n">nil?</span> <span class="o">&amp;&amp;</span> <span class="n">last</span><span class="o">.</span><span class="n">nil?</span>
+<span class="lineno"> 3</span>     <span class="n">first</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="lineno"> 4</span>     <span class="n">last</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="lineno"> 5</span>   <span class="k">elsif</span> <span class="n">last</span><span class="o">.</span><span class="n">nil?</span>
+<span class="lineno"> 6</span>     <span class="n">last</span> <span class="o">=</span> <span class="n">first</span>
+<span class="lineno"> 7</span>   <span class="k">end</span>
+<span class="lineno"> 8</span> 
+<span class="lineno"> 9</span>   <span class="o">[</span><span class="n">first</span><span class="o">.</span><span class="n">to_i</span><span class="p">,</span> <span class="n">last</span><span class="o">.</span><span class="n">to_i</span><span class="o">]</span>
+<span class="lineno">10</span> <span class="k">end</span>
+</code></pre></div>
+
+<p>This example is actually 3 different tags in play. The first is the <code>github_sample</code>, which on it’s own just retrieves a portion of a raw github file:</p>
+
+<pre>
+def determine_line_numbers(first, last)
+  if first.nil? &amp;&amp; last.nil?
+    first = 0
+    last = -1
+  elsif last.nil?
+    last = first
+  end
+
+  [first.to_i, last.to_i]
+end
+
+</pre>
+
+<p>The second is the builtin <code>highlight</code> block with the appropriate language format set:</p>
+
+<div class="highlight"><pre><code class="ruby"><span class="lineno"> 1</span> <span class="k">def</span> <span class="nf">determine_line_numbers</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">)</span>
+<span class="lineno"> 2</span>   <span class="k">if</span> <span class="n">first</span><span class="o">.</span><span class="n">nil?</span> <span class="o">&amp;&amp;</span> <span class="n">last</span><span class="o">.</span><span class="n">nil?</span>
+<span class="lineno"> 3</span>     <span class="n">first</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="lineno"> 4</span>     <span class="n">last</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="lineno"> 5</span>   <span class="k">elsif</span> <span class="n">last</span><span class="o">.</span><span class="n">nil?</span>
+<span class="lineno"> 6</span>     <span class="n">last</span> <span class="o">=</span> <span class="n">first</span>
+<span class="lineno"> 7</span>   <span class="k">end</span>
+<span class="lineno"> 8</span> 
+<span class="lineno"> 9</span>   <span class="o">[</span><span class="n">first</span><span class="o">.</span><span class="n">to_i</span><span class="p">,</span> <span class="n">last</span><span class="o">.</span><span class="n">to_i</span><span class="o">]</span>
+<span class="lineno">10</span> <span class="k">end</span>
+</code></pre></div>
+
+<p>The third piece is the <code>github_sample_ref</code> tag, which can be used on it’s own like so:</p>
+
+<div class="github-sample-reference">
+  <div class="author-info">
+    <a href="https://github.com/bwillis/jekyll-github-sample/blob/b989363c0432cefacd10a66943f0f04cdd0b6839/github_sample_tag.rb">This Github Sample</a> is by <a href="https://github.com/bwillis">bwillis</a>
+  </div>
+  <div class="meta-info">
+    github_sample_tag.rb <a href="https://github.com/bwillis/jekyll-github-sample/blob/b989363c0432cefacd10a66943f0f04cdd0b6839/github_sample_tag.rb">view</a> <a href="https://raw.githubusercontent.com/bwillis/jekyll-github-sample/b989363c0432cefacd10a66943f0f04cdd0b6839/github_sample_tag.rb">raw</a>
+  </div>
+</div>
+
+<p>I’ll use the Github Sample from the readme to show the syntax:</p>
+
+<div class="github-sample-reference">
+  <div class="author-info">
+    <a href="https://github.com/bwillis/jekyll-github-sample/blob/4cfc8108f5bdacb7383877cc5b14883e0770237f/README.md">This Github Sample</a> is by <a href="https://github.com/bwillis">bwillis</a>
+  </div>
+  <div class="meta-info">
+    README.md <a href="https://github.com/bwillis/jekyll-github-sample/blob/4cfc8108f5bdacb7383877cc5b14883e0770237f/README.md">view</a> <a href="https://raw.githubusercontent.com/bwillis/jekyll-github-sample/4cfc8108f5bdacb7383877cc5b14883e0770237f/README.md">raw</a>
+  </div>
+</div>
+<div class="highlight">
+<pre>{% github_sample_ref /bwillis/versioncake/989237901cb873f96df12be48cbf1239be496bd7/Appraisals %}
+{% highlight ruby %}
+{% github_sample /bwillis/versioncake/989237901cb873f96df12be48cbf1239be496bd7/Appraisals 0 5 %}
+{% endhighlight %}
+</pre>
+</div>
+
+<div class="alert alert-info">
+<b>Note</b> It is best to use the link to the file with a commit hash in it. This will avoid updating code samples in your blog on each deployment.
+</div>
+
+
+<!--    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'astudyincode'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+ -->
+
+</div>
+
+<div class="footer">
+    <div class="content">
+        <img src="https://www.gravatar.com/avatar/fd65c1fce417e58621069840730c806f?s=128&d=identicon&r=PG" />
+        <span>
+            Ben Willis - <a href="https://github.com/bwillis">Github</a> <a href="https://www.linkedin.com/in/benjaminwillis">LinkedIn</a>
+        </span>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>
+

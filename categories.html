@@ -1,22 +1,63 @@
----
-layout: page
-title: Categories
-header: Posts By Category
-group: navigation
----
-{% include JB/setup %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Categories</title>
+    
+    
+    <meta name="author" content="Ben Willis">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
+    <link href="/assets/themes/ben/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/ben/css/syntax.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+</head>
+
+<body>
+
+
+
+<div class="page-header">
+  <h1>Categories </h1>
+</div>
+
+
+
 
 <ul class="tag_box inline">
-  {% assign categories_list = site.categories %}
-  {% include JB/categories_list %}
+  
+  
+
+
+  
+    
+  
+
+
 </ul>
 
 
-{% for category in site.categories %} 
-  <h2 id="{{ category[0] }}-ref">{{ category[0] | join: "/" }}</h2>
-  <ul>
-    {% assign pages_list = category[1] %}  
-    {% include JB/pages_list %}
-  </ul>
-{% endfor %}
+
+
+
+
+<div class="footer">
+    <div class="content">
+        <img src="https://www.gravatar.com/avatar/fd65c1fce417e58621069840730c806f?s=128&d=identicon&r=PG" />
+        <span>
+            Ben Willis - <a href="https://github.com/bwillis">Github</a> <a href="https://www.linkedin.com/in/benjaminwillis">LinkedIn</a>
+        </span>
+    </div>
+</div>
+
+
+
+</body>
+</html>
 
