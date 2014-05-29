@@ -10,7 +10,12 @@ summary: Speeding up your Rails app based on the Yahoo! Best Practices for Speed
 <b>Hello!</b> This is an in-depth post that will be getting filled in over time. Most of these techniques are available in my project <a href="https://github.com/bwillis/soinformed">SoInformed</a>.
 </div>
 
-Optimizing web sites is complex, but necessary topic to understand as web developers to achieve performat web applications. Yahoo! has an excellent reference that explains different ways to speed up your website called <a href="https://developer.yahoo.com/performance/rules.html">Best Practices for Speeding Up Your Web Site</a>. This post will attempt review each best practice and determine how it can be done with Rails.
+<p>
+Optimizing web sites is complex, but necessary topic to understand as web developers to achieve faster web applications. There are many well known resources that have identified best practices to improve website performance. Many web frameworks have made these tasks easier to abstract the complexity away, but not all of them are well documented, some features are hidden and some are not possible at the framework level.
+
+
+Yahoo! has an excellent reference that explains different ways to speed up your website called <a href="https://developer.yahoo.com/performance/rules.html">Best Practices for Speeding Up Your Web Site</a>.
+</p>
 
 <h2><a name='num_http' href='#num_http'>Make Fewer HTTP Requests</a></h2>
 <a href='https://developer.yahoo.com/performance/rules.html#num_http'>source</a>
@@ -20,8 +25,9 @@ Optimizing web sites is complex, but necessary topic to understand as web develo
 <p>
   <b>Combined files</b> - Rails attempts to join as many assets together automatically. With the asset pipeline and the application.css and application.js manifest files, in production all javascript and css files are joined into a single file.
 </p>
-{% highlight ruby %}
-// layouts/application.html.erb
+
+layouts/application.html.erb
+{% highlight erb linenos %}
 <%= stylesheet_link_tag "application", :media => "all" %>
 <%= javascript_include_tag "application" %>
 {% endhighlight %}
@@ -29,12 +35,14 @@ Optimizing web sites is complex, but necessary topic to understand as web develo
   <b>CSS Sprites</b> - As for images, there is no default way in Rails that joins image requests together, aka spriting. To do this you need to use a library such as <a href="http://compass-style.org/help/tutorials/spriting/">Compass</a>.
 </p>
 
-{% highlight ruby %}
-// application.css.scss
+application.css.scss
+{% highlight scss linenos %}
 @import "logos/*.png";
 @include all-logos-sprites;
+{% endhighlight %}
 
-// some_file.html.erb
+some_file.html.erb
+{% highlight erb linenos %}
 <%= link_to '', 'http://foursquare.com', :class => 'logos-foursquare-powered', :target => '_blank' %>
 {% endhighlight %}
 
@@ -42,12 +50,12 @@ Optimizing web sites is complex, but necessary topic to understand as web develo
  <b>Inline images</b> - This is a way to delivery an image Base64 encoded in a url. The way to achieve this in Rails is to leverage the <a href="https://github.com/rails/sass-rails">sass-rails</a> gem and use the helper <code>asset-data-url</code>.
 </p>
 
-{% highlight ruby %}
+{% highlight scss linenos %}
 background-image: asset-data-url($relative-asset-path);
 // background-image: url(data:image/png;base64,iVBORw0K);
 {% endhighlight %}
 
-<h2><a name='cdn' href='#num_http'>Use a Content Delivery Network (CDN)</a></h2>
+<h2><a name='cdn' href='#cdn'>Use a Content Delivery Network (CDN)</a></h2>
 <a href='https://developer.yahoo.com/performance/rules.html#cdn'>source</a>
 <p>
 Coming soon...
