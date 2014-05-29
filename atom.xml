@@ -4,7 +4,7 @@
  <title>A Study in Code</title>
  <link href="http://bwillis.github.io/" rel="self"/>
  <link href="http://bwillis.github.io"/>
- <updated>2014-05-29T12:47:49-07:00</updated>
+ <updated>2014-05-29T12:52:35-07:00</updated>
  <id>http://bwillis.github.io</id>
  <author>
    <name>Ben Willis</name>
@@ -83,7 +83,7 @@ end
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;p&gt;All three work together and I can use a Github Sample from this actual post to show the syntax:&lt;/p&gt;
+&lt;p&gt;All three work well together and I can use a Github Sample from Jekyll Github Sample README file of the syntax:&lt;/p&gt;
 
 &lt;div class=&quot;github-sample-reference&quot;&gt;
   &lt;div class=&quot;author-info&quot;&gt;

@@ -5,8 +5,8 @@
         <description>A Study in Code - Ben Willis</description>
         <link>http://bwillis.github.io</link>
         <link>http://bwillis.github.io</link>
-        <lastBuildDate>2014-05-29T12:47:49-07:00</lastBuildDate>
-        <pubDate>2014-05-29T12:47:49-07:00</pubDate>
+        <lastBuildDate>2014-05-29T12:52:35-07:00</lastBuildDate>
+        <pubDate>2014-05-29T12:52:35-07:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -78,7 +78,7 @@ end
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;p&gt;All three work together and I can use a Github Sample from this actual post to show the syntax:&lt;/p&gt;
+&lt;p&gt;All three work well together and I can use a Github Sample from Jekyll Github Sample README file of the syntax:&lt;/p&gt;
 
 &lt;div class=&quot;github-sample-reference&quot;&gt;
   &lt;div class=&quot;author-info&quot;&gt;
