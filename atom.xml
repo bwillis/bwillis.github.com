@@ -4,7 +4,7 @@
  <title>A Study in Code</title>
  <link href="http://bwillis.github.io/" rel="self"/>
  <link href="http://bwillis.github.io"/>
- <updated>2014-05-28T20:49:11-07:00</updated>
+ <updated>2014-05-29T10:45:46-07:00</updated>
  <id>http://bwillis.github.io</id>
  <author>
    <name>Ben Willis</name>
@@ -17,7 +17,7 @@
    <link href="http://bwillis.github.io/2014/05/28/include-github-repo-code-in-jekyll"/>
    <updated>2014-05-28T00:00:00-07:00</updated>
    <id>http://bwillis.github.io/2014/05/28/include-github-repo-code-in-jekyll</id>
-   <content type="html">&lt;p&gt;Including code references in technical blogs is important to explain and demonstrate coding concepts. The typical way to do this is to embed &lt;a href=&quot;https://gist.github.com/&quot;&gt;Gists&lt;/a&gt; into your posts. However, I am writing several posts that all reference a public Github repo, not snippets that are inside Gists. Also, being able to reference code in a larger code base can help provide more context if necessary. Taking inspiration from an existing &lt;a href=&quot;http://blog.55minutes.com/2012/03/liquid-gist-tag-for-jekyll/&quot;&gt;Liquid Gist Tag&lt;/a&gt;, I created the Github Sample Tag.&lt;/p&gt;
+   <content type="html">&lt;p&gt;Including code references in technical blogs is important to explain and demonstrate coding concepts. The typical way to do this is to embed &lt;a href=&quot;https://gist.github.com/&quot;&gt;Gists&lt;/a&gt; into your posts. However, I am writing several posts that all reference a public Github repo, not snippets that are inside Gists. Also, being able to reference code in a larger code base can help provide additional context if necessary. Taking inspiration from an existing &lt;a href=&quot;http://blog.55minutes.com/2012/03/liquid-gist-tag-for-jekyll/&quot;&gt;Liquid Gist Tag&lt;/a&gt;, I created the Github Sample Tag.&lt;/p&gt;
 
 &lt;p&gt;The &lt;a href=&quot;https://github.com/bwillis/jekyll-github-sample&quot;&gt;Github Sample Tag&lt;/a&gt; is a Jekyll tag that allows bloggers to include a sample of a file hosted on Github. Here is an example of it in use:&lt;/p&gt;
 
@@ -42,7 +42,7 @@
 &lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;This example is actually 3 different tags in play. The first is the &lt;code&gt;github_sample&lt;/code&gt;, which on it’s own just retrieves a portion of a raw github file:&lt;/p&gt;
+&lt;p&gt;This example is actually 3 different tags in play, two from Github Sample Tag and one built-in. The first is the &lt;code&gt;github_sample&lt;/code&gt; tag, which on it’s own just retrieves a portion of a raw Github file:&lt;/p&gt;
 
 &lt;pre&gt;
 def determine_line_numbers(first, last)
@@ -83,7 +83,7 @@ end
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;p&gt;I’ll use the Github Sample from the readme to show the syntax:&lt;/p&gt;
+&lt;p&gt;All three work together and I can use a Github Sample from this actual post to show the syntax:&lt;/p&gt;
 
 &lt;div class=&quot;github-sample-reference&quot;&gt;
   &lt;div class=&quot;author-info&quot;&gt;
@@ -102,8 +102,10 @@ end
 &lt;/div&gt;
 
 &lt;div class=&quot;alert alert-info&quot;&gt;
-&lt;b&gt;Note&lt;/b&gt; It is best to use the link to the file with a commit hash in it. This will avoid updating code samples in your blog on each deployment.
+&lt;b&gt;Hey!&lt;/b&gt; It is best to use the link to the file with a commit hash in it, so everytime your Jekyll blog is recompiled it will not change your code sample.
 &lt;/div&gt;
+
+&lt;p&gt;Please leave questions and comments in the &lt;a href=&quot;https://github.com/bwillis/jekyll-github-sample/issues/new&quot;&gt;repo issues&lt;/a&gt;.&lt;/p&gt;
 </content>
  </entry>
  

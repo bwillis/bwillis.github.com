@@ -32,7 +32,7 @@
         <span>28 May 2014</span>
     </div>
 
-    <p>Including code references in technical blogs is important to explain and demonstrate coding concepts. The typical way to do this is to embed <a href="https://gist.github.com/">Gists</a> into your posts. However, I am writing several posts that all reference a public Github repo, not snippets that are inside Gists. Also, being able to reference code in a larger code base can help provide more context if necessary. Taking inspiration from an existing <a href="http://blog.55minutes.com/2012/03/liquid-gist-tag-for-jekyll/">Liquid Gist Tag</a>, I created the Github Sample Tag.</p>
+    <p>Including code references in technical blogs is important to explain and demonstrate coding concepts. The typical way to do this is to embed <a href="https://gist.github.com/">Gists</a> into your posts. However, I am writing several posts that all reference a public Github repo, not snippets that are inside Gists. Also, being able to reference code in a larger code base can help provide additional context if necessary. Taking inspiration from an existing <a href="http://blog.55minutes.com/2012/03/liquid-gist-tag-for-jekyll/">Liquid Gist Tag</a>, I created the Github Sample Tag.</p>
 
 <p>The <a href="https://github.com/bwillis/jekyll-github-sample">Github Sample Tag</a> is a Jekyll tag that allows bloggers to include a sample of a file hosted on Github. Here is an example of it in use:</p>
 
@@ -57,7 +57,7 @@
 <span class="lineno">10</span> <span class="k">end</span>
 </code></pre></div>
 
-<p>This example is actually 3 different tags in play. The first is the <code>github_sample</code>, which on it’s own just retrieves a portion of a raw github file:</p>
+<p>This example is actually 3 different tags in play, two from Github Sample Tag and one built-in. The first is the <code>github_sample</code> tag, which on it’s own just retrieves a portion of a raw Github file:</p>
 
 <pre>
 def determine_line_numbers(first, last)
@@ -98,7 +98,7 @@ end
   </div>
 </div>
 
-<p>I’ll use the Github Sample from the readme to show the syntax:</p>
+<p>All three work together and I can use a Github Sample from this actual post to show the syntax:</p>
 
 <div class="github-sample-reference">
   <div class="author-info">
@@ -117,8 +117,10 @@ end
 </div>
 
 <div class="alert alert-info">
-<b>Note</b> It is best to use the link to the file with a commit hash in it. This will avoid updating code samples in your blog on each deployment.
+<b>Hey!</b> It is best to use the link to the file with a commit hash in it, so everytime your Jekyll blog is recompiled it will not change your code sample.
 </div>
+
+<p>Please leave questions and comments in the <a href="https://github.com/bwillis/jekyll-github-sample/issues/new">repo issues</a>.</p>
 
 
 <!--    
