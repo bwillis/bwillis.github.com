@@ -4,7 +4,7 @@
  <title>A Study in Code</title>
  <link href="http://bwillis.github.io/" rel="self"/>
  <link href="http://bwillis.github.io"/>
- <updated>2014-05-29T12:56:50-07:00</updated>
+ <updated>2014-05-29T13:12:13-07:00</updated>
  <id>http://bwillis.github.io</id>
  <author>
    <name>Ben Willis</name>
@@ -23,17 +23,17 @@
 
 &lt;div class=&quot;github-sample-reference&quot;&gt;
   &lt;div class=&quot;author-info&quot;&gt;
-    &lt;a href=&quot;https://github.com/bwillis/jekyll-github-sample/blob/b989363c0432cefacd10a66943f0f04cdd0b6839/github_sample_tag.rb&quot;&gt;This Github Sample&lt;/a&gt; is by &lt;a href=&quot;https://github.com/bwillis&quot;&gt;bwillis&lt;/a&gt;
+    &lt;a href=&quot;https://github.com/bwillis/jekyll-github-sample/blob/a6868b42d44b01f06e6d1d3a0224f914f0299359/lib/jekyll_github_sample/code_tag.rb&quot;&gt;This Github Sample&lt;/a&gt; is by &lt;a href=&quot;https://github.com/bwillis&quot;&gt;bwillis&lt;/a&gt;
   &lt;/div&gt;
   &lt;div class=&quot;meta-info&quot;&gt;
-    github_sample_tag.rb &lt;a href=&quot;https://github.com/bwillis/jekyll-github-sample/blob/b989363c0432cefacd10a66943f0f04cdd0b6839/github_sample_tag.rb&quot;&gt;view&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/bwillis/jekyll-github-sample/b989363c0432cefacd10a66943f0f04cdd0b6839/github_sample_tag.rb&quot;&gt;raw&lt;/a&gt;
+    lib/jekyll_github_sample/code_tag.rb &lt;a href=&quot;https://github.com/bwillis/jekyll-github-sample/blob/a6868b42d44b01f06e6d1d3a0224f914f0299359/lib/jekyll_github_sample/code_tag.rb&quot;&gt;view&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/bwillis/jekyll-github-sample/a6868b42d44b01f06e6d1d3a0224f914f0299359/lib/jekyll_github_sample/code_tag.rb&quot;&gt;raw&lt;/a&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;determine_line_numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil?&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil?&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;elsif&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil?&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
@@ -48,7 +48,7 @@
 def determine_line_numbers(first, last)
   if first.nil? &amp;amp;&amp;amp; last.nil?
     first = 0
-    last = -1
+    last  = -1
   elsif last.nil?
     last = first
   end
@@ -63,7 +63,7 @@ end
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;determine_line_numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil?&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil?&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt; 5&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;elsif&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil?&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt; 6&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
@@ -76,10 +76,10 @@ end
 
 &lt;div class=&quot;github-sample-reference&quot;&gt;
   &lt;div class=&quot;author-info&quot;&gt;
-    &lt;a href=&quot;https://github.com/bwillis/jekyll-github-sample/blob/b989363c0432cefacd10a66943f0f04cdd0b6839/github_sample_tag.rb&quot;&gt;This Github Sample&lt;/a&gt; is by &lt;a href=&quot;https://github.com/bwillis&quot;&gt;bwillis&lt;/a&gt;
+    &lt;a href=&quot;https://github.com/bwillis/jekyll-github-sample/blob/a6868b42d44b01f06e6d1d3a0224f914f0299359/lib/jekyll_github_sample/code_tag.rb&quot;&gt;This Github Sample&lt;/a&gt; is by &lt;a href=&quot;https://github.com/bwillis&quot;&gt;bwillis&lt;/a&gt;
   &lt;/div&gt;
   &lt;div class=&quot;meta-info&quot;&gt;
-    github_sample_tag.rb &lt;a href=&quot;https://github.com/bwillis/jekyll-github-sample/blob/b989363c0432cefacd10a66943f0f04cdd0b6839/github_sample_tag.rb&quot;&gt;view&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/bwillis/jekyll-github-sample/b989363c0432cefacd10a66943f0f04cdd0b6839/github_sample_tag.rb&quot;&gt;raw&lt;/a&gt;
+    lib/jekyll_github_sample/code_tag.rb &lt;a href=&quot;https://github.com/bwillis/jekyll-github-sample/blob/a6868b42d44b01f06e6d1d3a0224f914f0299359/lib/jekyll_github_sample/code_tag.rb&quot;&gt;view&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/bwillis/jekyll-github-sample/a6868b42d44b01f06e6d1d3a0224f914f0299359/lib/jekyll_github_sample/code_tag.rb&quot;&gt;raw&lt;/a&gt;
   &lt;/div&gt;
 &lt;/div&gt;
 
