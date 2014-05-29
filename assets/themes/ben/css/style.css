@@ -51,6 +51,7 @@ a {
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
     overflow-y: scroll;
+    margin-bottom: 20px;
 }
 
 .github-sample-reference {

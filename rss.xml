@@ -5,8 +5,8 @@
         <description>A Study in Code - Ben Willis</description>
         <link>http://bwillis.github.io</link>
         <link>http://bwillis.github.io</link>
-        <lastBuildDate>2014-05-29T10:45:46-07:00</lastBuildDate>
-        <pubDate>2014-05-29T10:45:46-07:00</pubDate>
+        <lastBuildDate>2014-05-29T12:47:49-07:00</lastBuildDate>
+        <pubDate>2014-05-29T12:47:49-07:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -97,7 +97,7 @@ end
 &lt;/div&gt;
 
 &lt;div class=&quot;alert alert-info&quot;&gt;
-&lt;b&gt;Hey!&lt;/b&gt; It is best to use the link to the file with a commit hash in it, so everytime your Jekyll blog is recompiled it will not change your code sample.
+&lt;b&gt;Hey!&lt;/b&gt; It is best to use the link to the file with a commit hash in it so every time your Jekyll blog is recompiled it will not change your code sample.
 &lt;/div&gt;
 
 &lt;p&gt;Please leave questions and comments in the &lt;a href=&quot;https://github.com/bwillis/jekyll-github-sample/issues/new&quot;&gt;repo issues&lt;/a&gt;.&lt;/p&gt;
