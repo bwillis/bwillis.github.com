@@ -57,24 +57,25 @@ a {
 .github-sample-reference {
     width: 100%;
     position: relative;
-    height: 55px;
     background-color: #eee;
     border-top-right-radius: 5px;
     border-top-left-radius: 5px;
 }
 
 .github-sample-reference .author-info {
-    position:absolute;
-    top: 10px;
-    left:10px;
+    float:right;
+    padding: 10px;
 }
+
 .github-sample-reference .meta-info {
-    position:absolute;
-    top: 10px;
-    right:10px;
+    padding: 10px;
 }
 
-
+@media screen and (max-width: 980px) {
+    .github-sample-reference .author-info {
+        display: none;
+    }
+}
 
 .footer {
     background-color: #eee;

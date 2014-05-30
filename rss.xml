@@ -5,8 +5,8 @@
         <description>A Study in Code - Ben Willis</description>
         <link>http://bwillis.github.io</link>
         <link>http://bwillis.github.io</link>
-        <lastBuildDate>2014-05-30T10:58:58-07:00</lastBuildDate>
-        <pubDate>2014-05-30T10:58:58-07:00</pubDate>
+        <lastBuildDate>2014-05-30T12:27:13-07:00</lastBuildDate>
+        <pubDate>2014-05-30T12:27:13-07:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -39,7 +39,7 @@
 
 &lt;p&gt;This example is actually 3 different tags in play, two from Github Sample Tag and one built-in. The first is the &lt;code&gt;github_sample&lt;/code&gt; tag, which on it’s own just retrieves a portion of a raw Github file:&lt;/p&gt;
 
-&lt;pre&gt;
+&lt;pre class=&quot;highlight&quot;&gt;
 def determine_line_numbers(first, last)
   if first.nil? &amp;amp;&amp;amp; last.nil?
     first = 0
