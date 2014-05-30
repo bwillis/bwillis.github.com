@@ -21,6 +21,7 @@ body {
 @media screen and (max-width: 980px) {
     .img-overlay {
         font-size: 16px;
+        margin-bottom: 50px;
     }
 }
 
@@ -99,10 +100,12 @@ a {
     border-radius: 50%;
     -webkit-background-clip: padding-box;
     vertical-align:middle;
+    float:left;
+    margin: 10px;
 }
 
-.footer span {
-    margin-left: 15px;
+.footer .content .name {
+    margin-top: 40px;
 }
 
 .footer .content {
