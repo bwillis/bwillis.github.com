@@ -97,6 +97,13 @@ a {
     width: 430px;
 }
 
+
+.post-date {
+    color: #888888;
+    font-size: 18px;
+}
+
+
 /* Custom container */
 .container-narrow {
   margin: 0 auto;
