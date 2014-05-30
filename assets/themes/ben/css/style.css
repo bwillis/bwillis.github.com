@@ -76,6 +76,7 @@ a {
 
 .github-sample-reference .meta-info {
     padding: 10px;
+    word-wrap: break-word;
 }
 
 @media screen and (max-width: 980px) {
