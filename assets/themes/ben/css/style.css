@@ -83,6 +83,11 @@ a {
     padding-top: 20px;
 }
 
+.footer i {
+    font-size: 30px;
+    color: black;
+}
+
 .footer img {
     -webkit-border-radius: 50%;
     border-radius: 50%;
@@ -97,6 +102,13 @@ a {
 .footer .content {
     width: 430px;
 }
+
+@media screen and (max-width: 980px) {
+    .footer .content {
+        width: auto;
+    }
+}
+
 
 
 .post-date {
