@@ -9,5 +9,6 @@ http://bwillis.github.io/sitemap.txt
 http://bwillis.github.io/tags.html
 
 http://bwillis.github.io/2014/05/28/include-github-repo-code-in-jekyll
+http://bwillis.github.io/2014/05/27/speeding-up-your-rails-web-site
 http://bwillis.github.io/2014/05/20/clean-secrets-git-repo
 http://bwillis.github.io/2012/08/23/rails-jasmine-coffeescript

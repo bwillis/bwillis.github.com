@@ -5,8 +5,8 @@
         <description>A Study in Code - Ben Willis</description>
         <link>http://bwillis.github.io</link>
         <link>http://bwillis.github.io</link>
-        <lastBuildDate>2014-05-30T13:08:11-07:00</lastBuildDate>
-        <pubDate>2014-05-30T13:08:11-07:00</pubDate>
+        <lastBuildDate>2014-07-15T17:24:02-07:00</lastBuildDate>
+        <pubDate>2014-07-15T17:24:02-07:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -105,6 +105,303 @@ end
                 <link>http://bwillis.github.io/2014/05/28/include-github-repo-code-in-jekyll</link>
                 <guid>http://bwillis.github.io/2014/05/28/include-github-repo-code-in-jekyll</guid>
                 <pubDate>2014-05-28T00:00:00-07:00</pubDate>
+        </item>
+
+        <item>
+                <title>Speeding Up Your Rails Web Site</title>
+                <description>
+&lt;div class=&quot;alert alert-info&quot;&gt;
+&lt;b&gt;Hello!&lt;/b&gt; This is an in-depth post that will be getting filled in over time. Most of these techniques are available in my project &lt;a href=&quot;https://github.com/bwillis/soinformed&quot;&gt;SoInformed&lt;/a&gt;.
+&lt;/div&gt;
+
+&lt;p&gt;Optimizing web sites is complex, but necessary topic to understand as web developers to achieve faster web applications. There are many well known resources that have identified &lt;a href=&quot;https://developers.google.com/speed/articles/&quot;&gt;best practices&lt;/a&gt; &lt;a href=&quot;http://docs.webplatform.org/wiki/tutorials/speed_best_practices&quot;&gt;to improve&lt;/a&gt; &lt;a href=&quot;http://stevesouders.com/hpws/rules.php&quot;&gt;website performance&lt;/a&gt;. Many web frameworks have made these tasks easier by abstracting the complexity away, but not all of them are well documented, some features are hidden and some are not possible at the framework level. These entries will focus on different topics and attempt to identify how to perform these optimizations, or how they are automatically done, within the Rails framework.&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;num_http&quot; href=&quot;#num_http&quot;&gt;Make Fewer HTTP Requests&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#num_http&quot;&gt;Yahoo! Rule&lt;/a&gt; | &lt;a href=&quot;https://developers.google.com/speed/articles/web-metrics&quot;&gt;Google Rule&lt;/a&gt; | &lt;a href=&quot;http://stevesouders.com/hpws/rule-min-http.php&quot;&gt;Steve Souder’s Rule&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;It is optimal to make as few requests to the server when loading pages.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Combined files&lt;/strong&gt; - Rails attempts to join as many assets together automatically. With the asset pipeline and the application.css and application.js manifest files, in production all javascript and css files are joined into a single file.&lt;/p&gt;
+
+&lt;div class=&quot;github-sample-reference&quot;&gt;
+  &lt;div class=&quot;author-info&quot;&gt;
+    &lt;a href=&quot;https://github.com/bwillis/soinformed/blob/master/app/views/layouts/application.html.erb&quot;&gt;This Github Sample&lt;/a&gt; is by &lt;a href=&quot;https://github.com/bwillis&quot;&gt;bwillis&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;meta-info&quot;&gt;
+    app/views/layouts/application.html.erb &lt;a href=&quot;https://github.com/bwillis/soinformed/blob/master/app/views/layouts/application.html.erb&quot;&gt;view&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/bwillis/soinformed/master/app/views/layouts/application.html.erb&quot;&gt;raw&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;erb&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stylesheet_link_tag&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;application&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:media&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;all&amp;quot;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
+
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;javascript_include_tag&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;application&amp;quot;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;CSS Sprites&lt;/strong&gt; - As for images, there is no default way in Rails that joins image requests together, aka spriting. To do this you need to use a library such as &lt;a href=&quot;http://compass-style.org/help/tutorials/spriting/&quot;&gt;Compass&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;github-sample-reference&quot;&gt;
+  &lt;div class=&quot;author-info&quot;&gt;
+    &lt;a href=&quot;https://github.com/bwillis/soinformed/blob/master/app/assets/stylesheets/base.css.scss&quot;&gt;This Github Sample&lt;/a&gt; is by &lt;a href=&quot;https://github.com/bwillis&quot;&gt;bwillis&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;meta-info&quot;&gt;
+    app/assets/stylesheets/base.css.scss &lt;a href=&quot;https://github.com/bwillis/soinformed/blob/master/app/assets/stylesheets/base.css.scss&quot;&gt;view&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/bwillis/soinformed/master/app/assets/stylesheets/base.css.scss&quot;&gt;raw&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;scss&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;@import&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;logos/*.png&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;@include&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt; all-logos-sprites&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Once you have included the sprites, you can reference dynamic namespaced class names, like &lt;code&gt;logos-foursquare-powered&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;github-sample-reference&quot;&gt;
+  &lt;div class=&quot;author-info&quot;&gt;
+    &lt;a href=&quot;https://github.com/bwillis/soinformed/blob/master/app/views/layouts/application.html.erb&quot;&gt;This Github Sample&lt;/a&gt; is by &lt;a href=&quot;https://github.com/bwillis&quot;&gt;bwillis&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;meta-info&quot;&gt;
+    app/views/layouts/application.html.erb &lt;a href=&quot;https://github.com/bwillis/soinformed/blob/master/app/views/layouts/application.html.erb&quot;&gt;view&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/bwillis/soinformed/master/app/views/layouts/application.html.erb&quot;&gt;raw&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;erb&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sprite_link&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;logos-foursquare-powered&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;http://foursquare.com&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;_blank&amp;#39;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Inline images&lt;/strong&gt; - To avoid additional requests, an image can be delivery Base64 encoded in an existing css, javascript or html file. The way to achieve this in Rails is to leverage the &lt;a href=&quot;https://github.com/rails/sass-rails&quot;&gt;sass-rails&lt;/a&gt; gem and use the helper &lt;code&gt;inline-image&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;github-sample-reference&quot;&gt;
+  &lt;div class=&quot;author-info&quot;&gt;
+    &lt;a href=&quot;https://github.com/bwillis/soinformed/blob/7b5b4f15478ef3d6ca279b3aa0df30c6c821413d/app/assets/stylesheets/base.css.scss&quot;&gt;This Github Sample&lt;/a&gt; is by &lt;a href=&quot;https://github.com/bwillis&quot;&gt;bwillis&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;meta-info&quot;&gt;
+    app/assets/stylesheets/base.css.scss &lt;a href=&quot;https://github.com/bwillis/soinformed/blob/7b5b4f15478ef3d6ca279b3aa0df30c6c821413d/app/assets/stylesheets/base.css.scss&quot;&gt;view&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/bwillis/soinformed/7b5b4f15478ef3d6ca279b3aa0df30c6c821413d/app/assets/stylesheets/base.css.scss&quot;&gt;raw&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;scss&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;background-image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;inline-image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;so-informed.png&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div style=&quot;display:none&quot;&gt;
+
+&lt;h2&gt;&lt;a name=&quot;gzip&quot; href=&quot;#gzip&quot;&gt;Compress and Gzip Components&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#gzip&quot;&gt;source&lt;/a&gt;
+
+Compressing and Gzipping are techniques to reduce the body size of an HTTP response.
+
+### Compression (or minification)
+
+There are many types of compression or minification, but Rails compression refers typically to assets. This is automatically in the Rails asset pipeline by specific configured
+
+&lt;h2&gt;&lt;a name=&quot;cdn&quot; href=&quot;#cdn&quot;&gt;Use a Content Delivery Network (CDN)&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#cdn&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;expires&quot; href=&quot;#expires&quot;&gt;Add Expires or Cache-Control Header&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#expires&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;css_top&quot; href=&quot;#css_top&quot;&gt;Put Stylesheets at Top&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#css_top&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;js_bottom&quot; href=&quot;#js_bottom&quot;&gt;Put Scripts at Bottom&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#js_bottom&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;css_expressions&quot; href=&quot;#css_expressions&quot;&gt;Avoid CSS Expressions&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#css_expressions&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;external&quot; href=&quot;#external&quot;&gt;Make JavaScript and CSS External&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#external&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;dns_lookups&quot; href=&quot;#dns_lookups&quot;&gt;Reduce DNS Lookups&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#dns_lookups&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;minify&quot; href=&quot;#minify&quot;&gt;Minify JavaScript and CSS&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#minify&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;redirects&quot; href=&quot;#redirects&quot;&gt;Avoid Redirects&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#redirects&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;js_dupes&quot; href=&quot;#js_dupes&quot;&gt;Remove Duplicate Scripts&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#js_dupes&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;etags&quot; href=&quot;#etags&quot;&gt;Configure ETags&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#etags&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;cacheajax&quot; href=&quot;#cacheajax&quot;&gt;Make Ajax Cacheable&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#cacheajax&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;flush&quot; href=&quot;#flush&quot;&gt;Flush Buffer Early&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#flush&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;ajax_get&quot; href=&quot;#ajax_get&quot;&gt;Use GET for Ajax Requests&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#ajax_get&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;postload&quot; href=&quot;#postload&quot;&gt;Postload Components&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#postload&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;preload&quot; href=&quot;#preload&quot;&gt;Preload Components&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#preload&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;min_dom&quot; href=&quot;#min_dom&quot;&gt;Reduce the Number of DOM Elements&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#min_dom&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;split&quot; href=&quot;#split&quot;&gt;Split Components Across Domains&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#split&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;iframes&quot; href=&quot;#iframes&quot;&gt;Minimize Number of iframes&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#iframes&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;no404&quot; href=&quot;#no404&quot;&gt;Avoid 404s&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#no404&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;cookie_size&quot; href=&quot;#cookie_size&quot;&gt;Reduce Cookie Size&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#cookie_size&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;cookie_free&quot; href=&quot;#cookie_free&quot;&gt;Use Cookie-Free Domains for Components&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#cookie_free&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;dom_access&quot; href=&quot;#dom_access&quot;&gt;Minimize DOM Access&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#dom_access&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;events&quot; href=&quot;#events&quot;&gt;Develop Smart Event Handlers&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#events&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;csslink&quot; href=&quot;#csslink&quot;&gt;Choose &lt;link /&gt; Over @import&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#csslink&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;no_filters&quot; href=&quot;#no_filters&quot;&gt;Avoid Filters&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#no_filters&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;opt_images&quot; href=&quot;#opt_images&quot;&gt;Optimize Images&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#opt_images&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;opt_sprites&quot; href=&quot;#opt_sprites&quot;&gt;Optimize CSS Sprites&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#opt_sprites&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;no_scale&quot; href=&quot;#no_scale&quot;&gt;Do Not Scale Images in HTML&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#no_scale&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;favicon&quot; href=&quot;#favicon&quot;&gt;Make favicon.ico Small and Cacheable&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#favicon&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;under25&quot; href=&quot;#under25&quot;&gt;Keep Components Under 25 KB&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#under25&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;multipart&quot; href=&quot;#multipart&quot;&gt;Pack Components Into a Multipart Document&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#multipart&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;h2&gt;&lt;a name=&quot;emptysrc&quot; href=&quot;#emptysrc&quot;&gt;Avoid Empty Image src&lt;/a&gt;&lt;/h2&gt;
+&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#emptysrc&quot;&gt;source&lt;/a&gt;
+&lt;p&gt;
+Coming soon...
+&lt;/p&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://docs.webplatform.org/wiki/tutorials/speed_best_practices&quot;&gt;Best practices for building faster Web apps with HTML5 by Paul Irish&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://developers.google.com/speed/articles/&quot;&gt;Google’s Make the Web Faster Tutorials&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://stevesouders.com/hpws/rules.php&quot;&gt;High Performance Websites by Steve Souders&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html&quot;&gt;Yahoo! Best Practices for Speeding Up Your Web Site&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+                <link>http://bwillis.github.io/2014/05/27/speeding-up-your-rails-web-site</link>
+                <guid>http://bwillis.github.io/2014/05/27/speeding-up-your-rails-web-site</guid>
+                <pubDate>2014-05-27T00:00:00-07:00</pubDate>
         </item>
 
         <item>
