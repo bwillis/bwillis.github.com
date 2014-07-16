@@ -61,10 +61,10 @@
 <p>We chose the solution we thought was simple and we could easily support: <a href="https://github.com/bradphelan/jasminerice">jasminerice</a>. The simplicity of utilizing the Rails Asset Pipeline to compile any assets, not just CoffeeScript, but also SCSS files made it ideal to run our Jasmine tests. To get started you have to:</p>
 
 <ol>
-  <li>include jasminerice gem in the dev and testing groups <img src="/assets/themes//images/gemfile.png" class="img-responsive center-block" /></li>
-  <li>edit your jasmine spec manifest in spec/javascripts/spec.js.coffee to include your test files (optionally include any scss/sass files in spec/javascripts/spec.css) <img src="/assets/themes//images/asset-pipeline-manifest.png" class="img-responsive center-block" /></li>
-  <li>write your tests in CoffeeScript including any dependencies <img src="/assets/themes//images/jasmine-coffeescript-spec.png" class="img-responsive center-block" /></li>
-  <li>visit http://localhost:3000/jasmine and watch your tests run <img src="/assets/themes//images/jasmine-passing-specs.png" class="img-responsive center-block" /></li>
+  <li>include jasminerice gem in the dev and testing groups <img src="/assets/themes/ben/images/gemfile.png" class="img-responsive center-block" /></li>
+  <li>edit your jasmine spec manifest in spec/javascripts/spec.js.coffee to include your test files (optionally include any scss/sass files in spec/javascripts/spec.css) <img src="/assets/themes/ben/images/asset-pipeline-manifest.png" class="img-responsive center-block" /></li>
+  <li>write your tests in CoffeeScript including any dependencies <img src="/assets/themes/ben/images/jasmine-coffeescript-spec.png" class="img-responsive center-block" /></li>
+  <li>visit http://localhost:3000/jasmine and watch your tests run <img src="/assets/themes/ben/images/jasmine-passing-specs.png" class="img-responsive center-block" /></li>
 </ol>
 
 <p>Running the jasmine tests headless for CI requires some additional help. We leveraged guard-jasmine which uses <a href="http://phantomjs.org/">phantomjs</a> &amp; <a href="https://github.com/cowboyd/therubyracer">therubyracer</a> to perform headless testing.</p>
@@ -102,6 +102,23 @@
 
 </div>
 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-44825997-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<p class="text-center">
+    
+    <a href='/'>Read more &raquo;</a>
+    
+</p>
+
 <div class="footer">
     <div class="content">
         <img src="https://www.gravatar.com/avatar/fd65c1fce417e58621069840730c806f?s=128&d=identicon&r=PG" />
@@ -115,6 +132,7 @@
         </div>
     </div>
 </div>
+
 
 
 

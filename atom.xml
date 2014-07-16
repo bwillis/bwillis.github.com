@@ -4,7 +4,7 @@
  <title>A Study in Code</title>
  <link href="http://bwillis.github.io/" rel="self"/>
  <link href="http://bwillis.github.io"/>
- <updated>2014-07-15T17:24:02-07:00</updated>
+ <updated>2014-07-16T11:52:43-07:00</updated>
  <id>http://bwillis.github.io</id>
  <author>
    <name>Ben Willis</name>
@@ -488,10 +488,10 @@ Coming soon...
 &lt;p&gt;We chose the solution we thought was simple and we could easily support: &lt;a href=&quot;https://github.com/bradphelan/jasminerice&quot;&gt;jasminerice&lt;/a&gt;. The simplicity of utilizing the Rails Asset Pipeline to compile any assets, not just CoffeeScript, but also SCSS files made it ideal to run our Jasmine tests. To get started you have to:&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;include jasminerice gem in the dev and testing groups &lt;img src=&quot;/assets/themes//images/gemfile.png&quot; class=&quot;img-responsive center-block&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;edit your jasmine spec manifest in spec/javascripts/spec.js.coffee to include your test files (optionally include any scss/sass files in spec/javascripts/spec.css) &lt;img src=&quot;/assets/themes//images/asset-pipeline-manifest.png&quot; class=&quot;img-responsive center-block&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;write your tests in CoffeeScript including any dependencies &lt;img src=&quot;/assets/themes//images/jasmine-coffeescript-spec.png&quot; class=&quot;img-responsive center-block&quot; /&gt;&lt;/li&gt;
-  &lt;li&gt;visit http://localhost:3000/jasmine and watch your tests run &lt;img src=&quot;/assets/themes//images/jasmine-passing-specs.png&quot; class=&quot;img-responsive center-block&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;include jasminerice gem in the dev and testing groups &lt;img src=&quot;/assets/themes/ben/images/gemfile.png&quot; class=&quot;img-responsive center-block&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;edit your jasmine spec manifest in spec/javascripts/spec.js.coffee to include your test files (optionally include any scss/sass files in spec/javascripts/spec.css) &lt;img src=&quot;/assets/themes/ben/images/asset-pipeline-manifest.png&quot; class=&quot;img-responsive center-block&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;write your tests in CoffeeScript including any dependencies &lt;img src=&quot;/assets/themes/ben/images/jasmine-coffeescript-spec.png&quot; class=&quot;img-responsive center-block&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;visit http://localhost:3000/jasmine and watch your tests run &lt;img src=&quot;/assets/themes/ben/images/jasmine-passing-specs.png&quot; class=&quot;img-responsive center-block&quot; /&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;Running the jasmine tests headless for CI requires some additional help. We leveraged guard-jasmine which uses &lt;a href=&quot;http://phantomjs.org/&quot;&gt;phantomjs&lt;/a&gt; &amp;amp; &lt;a href=&quot;https://github.com/cowboyd/therubyracer&quot;&gt;therubyracer&lt;/a&gt; to perform headless testing.&lt;/p&gt;
