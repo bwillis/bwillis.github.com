@@ -42,11 +42,36 @@
 <p>Optimizing web sites is complex, but necessary topic to understand as web developers to achieve faster web applications. There are many well known resources that have identified <a href="https://developers.google.com/speed/articles/">best practices</a> <a href="http://docs.webplatform.org/wiki/tutorials/speed_best_practices">to improve</a> <a href="http://stevesouders.com/hpws/rules.php">website performance</a>. Many web frameworks have made these tasks easier by abstracting the complexity away, but not all of them are well documented, some features are hidden and some are not possible at the framework level. These entries will focus on different topics and attempt to identify how to perform these optimizations, or how they are automatically done, within the Rails framework.</p>
 
 <h2><a name="num_http" href="#num_http">Make Fewer HTTP Requests</a></h2>
-<p><a href="https://developer.yahoo.com/performance/rules.html#num_http">Yahoo! Rule</a> | <a href="https://developers.google.com/speed/articles/web-metrics">Google Rule</a> | <a href="http://stevesouders.com/hpws/rule-min-http.php">Steve Souder’s Rule</a></p>
 
-<p>It is optimal to make as few requests to the server when loading pages.</p>
+<p>In HTTP 1.0 servers would typically close a TCP connection after each request (in HTTP 1.1 persistent connections are a solution). The overhead of opening and closing connections as well as limitations of <a href="http://www.stevesouders.com/blog/2008/03/20/roundup-on-parallel-connections/">maximum parallel connections per server</a> make web page loading slower.</p>
 
-<p><strong>Combined files</strong> - Rails attempts to join as many assets together automatically. With the asset pipeline and the application.css and application.js manifest files, in production all javascript and css files are joined into a single file.</p>
+<p>To avoid these issues, as you may have guessed, typical solutions pack multiple requests into a single request.</p>
+
+<h3 id="combining-javascript-and-css">Combining Javascript and CSS</h3>
+
+<p>Rails can automatically join Javascript and CSS files together. The asset pipeline has the concept of manifest files to declare the files you want to include together (typically <code>application.css</code> and <code>application.js</code>). In production all the javascript and css files will be joined into a single file.</p>
+
+<div class="github-sample-reference">
+  <div class="author-info">
+    <a href="https://github.com/bwillis/soinformed/blob/e93bcaea487c99d707de091ccb3b7a4aa3b33f0c/app/assets/javascripts/application.js">This Github Sample</a> is by <a href="https://github.com/bwillis">bwillis</a>
+  </div>
+  <div class="meta-info">
+    app/assets/javascripts/application.js <a href="https://github.com/bwillis/soinformed/blob/e93bcaea487c99d707de091ccb3b7a4aa3b33f0c/app/assets/javascripts/application.js">view</a> <a href="https://raw.githubusercontent.com/bwillis/soinformed/e93bcaea487c99d707de091ccb3b7a4aa3b33f0c/app/assets/javascripts/application.js">raw</a>
+  </div>
+</div>
+
+<div class="highlight"><pre><code class="erb"><span class="x">// This is a manifest file that&#39;ll be compiled into including all the files listed below.</span>
+<span class="x">// Add new JavaScript/Coffee code in separate files in this directory and they&#39;ll automatically</span>
+<span class="x">// be included in the compiled file accessible from http://example.com/assets/application.js</span>
+<span class="x">// It&#39;s not advisable to add code directly here, but if you do, it&#39;ll appear at the bottom of the</span>
+<span class="x">// the compiled file.</span>
+<span class="x">//</span>
+<span class="x">//= require jquery_ujs</span>
+<span class="x">//= require_tree .</span>
+<span class="x">//= require contacts</span>
+</code></pre></div>
+
+<p>Then you can include links to the manifest files in your layouts:</p>
 
 <div class="github-sample-reference">
   <div class="author-info">
@@ -62,7 +87,9 @@
 <span class="cp">&lt;%=</span> <span class="n">javascript_include_tag</span> <span class="s2">&quot;application&quot;</span> <span class="cp">%&gt;</span><span class="x"></span>
 </code></pre></div>
 
-<p><strong>CSS Sprites</strong> - As for images, there is no default way in Rails that joins image requests together, aka spriting. To do this you need to use a library such as <a href="http://compass-style.org/help/tutorials/spriting/">Compass</a>.</p>
+<h3 id="combining-images-sprites-and-css">Combining Images (Sprites and CSS)</h3>
+
+<p>As for images, there is no default way in Rails that joins image requests together, aka spriting. To do this you need to use a library such as <a href="http://compass-style.org/help/tutorials/spriting/">Compass</a>. Organize a set of images in a folder and the images will be sprited together. Helpers exist to easily allow you to reference a single image within the sprite map. To include the sprite folder in Compass you would declare the following:</p>
 
 <div class="github-sample-reference">
   <div class="author-info">
@@ -91,7 +118,9 @@
 <div class="highlight"><pre><code class="erb"><span class="cp">&lt;%=</span> <span class="n">sprite_link</span> <span class="s2">&quot;logos-foursquare-powered&quot;</span><span class="p">,</span> <span class="s2">&quot;http://foursquare.com&quot;</span><span class="p">,</span> <span class="ss">:target</span> <span class="o">=&gt;</span> <span class="s1">&#39;_blank&#39;</span> <span class="cp">%&gt;</span><span class="x"></span>
 </code></pre></div>
 
-<p><strong>Inline images</strong> - To avoid additional requests, an image can be delivery Base64 encoded in an existing css, javascript or html file. The way to achieve this in Rails is to leverage the <a href="https://github.com/rails/sass-rails">sass-rails</a> gem and use the helper <code>inline-image</code>.</p>
+<h3 id="inline-images">Inline images</h3>
+
+<p>Another common way to reduce requests is to encode an image in Base64 and include it in CSS for example. The way to achieve this in Rails is to leverage the <a href="https://github.com/rails/sass-rails">sass-rails</a> gem and use the helper <code>inline-image</code>.</p>
 
 <div class="github-sample-reference">
   <div class="author-info">
@@ -104,6 +133,15 @@
 
 <div class="highlight"><pre><code class="scss"><span class="lineno">1</span> <span class="na">background-image</span><span class="o">:</span> <span class="nf">inline-image</span><span class="p">(</span><span class="s1">&#39;</span><span class="s2">so-informed.png&#39;</span><span class="p">);</span>
 </code></pre></div>
+
+<div class="alert alert-info">
+<b>Trade-offs</b> This is typically good for smaller images that can be cached with CSS. You should ask yourself some questions like:
+<ul>
+  <li>Is this better in a sprite?</li>
+  <li>Is this image too large after it is Base64 encoded?</li>
+  <li>Is this just on a page that needs to load extremely fast?</li>
+</ul>
+</div>
 
 <div style="display:none">
 

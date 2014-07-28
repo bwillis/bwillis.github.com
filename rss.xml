@@ -5,8 +5,8 @@
         <description>A Study in Code - Ben Willis</description>
         <link>http://bwillis.github.io</link>
         <link>http://bwillis.github.io</link>
-        <lastBuildDate>2014-07-20T18:00:05-07:00</lastBuildDate>
-        <pubDate>2014-07-20T18:00:05-07:00</pubDate>
+        <lastBuildDate>2014-07-28T11:12:54-07:00</lastBuildDate>
+        <pubDate>2014-07-28T11:12:54-07:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -117,11 +117,36 @@ end
 &lt;p&gt;Optimizing web sites is complex, but necessary topic to understand as web developers to achieve faster web applications. There are many well known resources that have identified &lt;a href=&quot;https://developers.google.com/speed/articles/&quot;&gt;best practices&lt;/a&gt; &lt;a href=&quot;http://docs.webplatform.org/wiki/tutorials/speed_best_practices&quot;&gt;to improve&lt;/a&gt; &lt;a href=&quot;http://stevesouders.com/hpws/rules.php&quot;&gt;website performance&lt;/a&gt;. Many web frameworks have made these tasks easier by abstracting the complexity away, but not all of them are well documented, some features are hidden and some are not possible at the framework level. These entries will focus on different topics and attempt to identify how to perform these optimizations, or how they are automatically done, within the Rails framework.&lt;/p&gt;
 
 &lt;h2&gt;&lt;a name=&quot;num_http&quot; href=&quot;#num_http&quot;&gt;Make Fewer HTTP Requests&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;a href=&quot;https://developer.yahoo.com/performance/rules.html#num_http&quot;&gt;Yahoo! Rule&lt;/a&gt; | &lt;a href=&quot;https://developers.google.com/speed/articles/web-metrics&quot;&gt;Google Rule&lt;/a&gt; | &lt;a href=&quot;http://stevesouders.com/hpws/rule-min-http.php&quot;&gt;Steve Souder’s Rule&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;It is optimal to make as few requests to the server when loading pages.&lt;/p&gt;
+&lt;p&gt;In HTTP 1.0 servers would typically close a TCP connection after each request (in HTTP 1.1 persistent connections are a solution). The overhead of opening and closing connections as well as limitations of &lt;a href=&quot;http://www.stevesouders.com/blog/2008/03/20/roundup-on-parallel-connections/&quot;&gt;maximum parallel connections per server&lt;/a&gt; make web page loading slower.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Combined files&lt;/strong&gt; - Rails attempts to join as many assets together automatically. With the asset pipeline and the application.css and application.js manifest files, in production all javascript and css files are joined into a single file.&lt;/p&gt;
+&lt;p&gt;To avoid these issues, as you may have guessed, typical solutions pack multiple requests into a single request.&lt;/p&gt;
+
+&lt;h3 id=&quot;combining-javascript-and-css&quot;&gt;Combining Javascript and CSS&lt;/h3&gt;
+
+&lt;p&gt;Rails can automatically join Javascript and CSS files together. The asset pipeline has the concept of manifest files to declare the files you want to include together (typically &lt;code&gt;application.css&lt;/code&gt; and &lt;code&gt;application.js&lt;/code&gt;). In production all the javascript and css files will be joined into a single file.&lt;/p&gt;
+
+&lt;div class=&quot;github-sample-reference&quot;&gt;
+  &lt;div class=&quot;author-info&quot;&gt;
+    &lt;a href=&quot;https://github.com/bwillis/soinformed/blob/e93bcaea487c99d707de091ccb3b7a4aa3b33f0c/app/assets/javascripts/application.js&quot;&gt;This Github Sample&lt;/a&gt; is by &lt;a href=&quot;https://github.com/bwillis&quot;&gt;bwillis&lt;/a&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;meta-info&quot;&gt;
+    app/assets/javascripts/application.js &lt;a href=&quot;https://github.com/bwillis/soinformed/blob/e93bcaea487c99d707de091ccb3b7a4aa3b33f0c/app/assets/javascripts/application.js&quot;&gt;view&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/bwillis/soinformed/e93bcaea487c99d707de091ccb3b7a4aa3b33f0c/app/assets/javascripts/application.js&quot;&gt;raw&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;erb&quot;&gt;&lt;span class=&quot;x&quot;&gt;// This is a manifest file that&amp;#39;ll be compiled into including all the files listed below.&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;// Add new JavaScript/Coffee code in separate files in this directory and they&amp;#39;ll automatically&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;// be included in the compiled file accessible from http://example.com/assets/application.js&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;// It&amp;#39;s not advisable to add code directly here, but if you do, it&amp;#39;ll appear at the bottom of the&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;// the compiled file.&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;//&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;//= require jquery_ujs&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;//= require_tree .&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;//= require contacts&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Then you can include links to the manifest files in your layouts:&lt;/p&gt;
 
 &lt;div class=&quot;github-sample-reference&quot;&gt;
   &lt;div class=&quot;author-info&quot;&gt;
@@ -137,7 +162,9 @@ end
 &lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;javascript_include_tag&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;application&amp;quot;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;strong&gt;CSS Sprites&lt;/strong&gt; - As for images, there is no default way in Rails that joins image requests together, aka spriting. To do this you need to use a library such as &lt;a href=&quot;http://compass-style.org/help/tutorials/spriting/&quot;&gt;Compass&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&quot;combining-images-sprites-and-css&quot;&gt;Combining Images (Sprites and CSS)&lt;/h3&gt;
+
+&lt;p&gt;As for images, there is no default way in Rails that joins image requests together, aka spriting. To do this you need to use a library such as &lt;a href=&quot;http://compass-style.org/help/tutorials/spriting/&quot;&gt;Compass&lt;/a&gt;. Organize a set of images in a folder and the images will be sprited together. Helpers exist to easily allow you to reference a single image within the sprite map. To include the sprite folder in Compass you would declare the following:&lt;/p&gt;
 
 &lt;div class=&quot;github-sample-reference&quot;&gt;
   &lt;div class=&quot;author-info&quot;&gt;
@@ -166,7 +193,9 @@ end
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;erb&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sprite_link&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;logos-foursquare-powered&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;http://foursquare.com&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;_blank&amp;#39;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;&lt;strong&gt;Inline images&lt;/strong&gt; - To avoid additional requests, an image can be delivery Base64 encoded in an existing css, javascript or html file. The way to achieve this in Rails is to leverage the &lt;a href=&quot;https://github.com/rails/sass-rails&quot;&gt;sass-rails&lt;/a&gt; gem and use the helper &lt;code&gt;inline-image&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&quot;inline-images&quot;&gt;Inline images&lt;/h3&gt;
+
+&lt;p&gt;Another common way to reduce requests is to encode an image in Base64 and include it in CSS for example. The way to achieve this in Rails is to leverage the &lt;a href=&quot;https://github.com/rails/sass-rails&quot;&gt;sass-rails&lt;/a&gt; gem and use the helper &lt;code&gt;inline-image&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class=&quot;github-sample-reference&quot;&gt;
   &lt;div class=&quot;author-info&quot;&gt;
@@ -179,6 +208,15 @@ end
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;scss&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;background-image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;inline-image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;so-informed.png&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;alert alert-info&quot;&gt;
+&lt;b&gt;Trade-offs&lt;/b&gt; This is typically good for smaller images that can be cached with CSS. You should ask yourself some questions like:
+&lt;ul&gt;
+  &lt;li&gt;Is this better in a sprite?&lt;/li&gt;
+  &lt;li&gt;Is this image too large after it is Base64 encoded?&lt;/li&gt;
+  &lt;li&gt;Is this just on a page that needs to load extremely fast?&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
 
 &lt;div style=&quot;display:none&quot;&gt;
 
