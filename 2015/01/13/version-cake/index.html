@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Version Cake Introduction - A Study in Code</title>
+    
+    
+    <meta name="author" content="Ben Willis">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
+    <link href="/assets/themes/ben/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="/assets/themes/ben/css/syntax.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="/atom.xml" type="application/atom+xml" rel="alternate" title="Sitewide ATOM Feed">
+    <link href="/rss.xml" type="application/rss+xml" rel="alternate" title="Sitewide RSS Feed">
+
+</head>
+
+<body>
+
+
+<div class="content">
+
+    <div class="page-header">
+      <h1>Version Cake Introduction </h1>
+    </div>
+
+    <div class="post-date">
+        <span>13 January 2015</span>
+    </div>
+
+    
+<p><a href="https://github.com/bwillis/versioncake">Version Cake</a> is a Ruby gem for the Rails framework. It is meant to provide a drop in solution to version views in your application. The opinion of Version Cake is that you will need to version your resources and the views are the contract to your clients so keeping the versions close to your payloads is important.</p>
+
+<p>The novelty of Version Cake is how it versions: by using the file extension. This is the same way which you’ve always gotten magical routing to templates by action name, request format, locale or other processors (Rails 4.1 also brought a similar, though more generic concept call <a href="http://edgeguides.rubyonrails.org/4_1_release_notes.html#action-pack-variants">variants</a>). By dropping in the Version Cake gem you can start versioning specific resources simply by renaming them <code>index.json.jbuilder.v2</code>.</p>
+
+<p>Version Cake follows Rails in convention over configuration: extraction of the request version is done automatically, routing to the appropriate file is handled and a set of typical defaults are set for supported versions. Of course it can all be <a href="https://github.com/bwillis/versioncake#configuration">configured</a> when you are ready for production.</p>
+
+<h2>What's Next?</h2>
+
+<p>This gem has gotten a small following over the last 2+ years and I think it still fills an important niche. I’ve developed with it on different projects and it’s a great start, but after some time you feel some growing pains. These are pain points I’ve encountered that I think Version Cake can solve:</p>
+
+<ul>
+  <li>documenting what are the versioned resources</li>
+  <li>marking a version obsolete</li>
+  <li>marking a version deprecated</li>
+  <li>changing URIs to versioned resources</li>
+  <li>alternative ways to version other than by view extension</li>
+  <li>only Rails support</li>
+</ul>
+
+<p>These are all features that will (hopefully) land for v3.0. I also plan on improving the documentation as <a href="https://github.com/bwillis/versioncake/blob/master/README.md">one long readme</a> file can be difficult to grok. You can monitor the latest changes for the majority of the work <a href="https://github.com/bwillis/versioncake/tree/rack-middleware-spike">on this branch</a>.</p>
+
+
+<!--    
+
+
+  <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_developer = 1;
+    var disqus_shortname = 'astudyincode'; // required: replace example with your forum shortname
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+ -->
+
+</div>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-44825997-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<p class="text-center">
+    
+    <a href='/'>Read more &raquo;</a>
+    
+</p>
+
+<div class="footer">
+    <div class="content">
+        <img src="https://www.gravatar.com/avatar/fd65c1fce417e58621069840730c806f?s=128&d=identicon&r=PG" />
+        <div class="name">
+          Ben Willis
+        </div>
+        <div class="social-links">
+          <a href="https://github.com/bwillis"><i class="fa fa-github-square"></i></a>
+          <a href="https://www.linkedin.com/in/benjaminwillis"><i class="fa fa-linkedin-square"></i></a>
+          <a href="https://twitter.com/benjaminjwillis"><i class="fa fa-twitter-square"></i></a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</body>
+</html>
+

@@ -55,10 +55,9 @@
 
 <p>There are many approaches to moving secrets out of code, but the general best practice is environment variables. Since secrets are commonly kept in YAML files, and they are processed with ERB, you can use ruby to inject the environment variables.</p>
 
-<div class="highlight"><pre><code class="ruby"><span class="n">foursquare_app_id</span><span class="p">:</span> <span class="o">&lt;</span><span class="sx">%= ENV[&#39;FOURSQUARE_APP_ID&#39;] %&gt;</span>
-<span class="sx">foursquare_app_secret: &lt;%=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;FOURSQUARE_APP_SECRET&#39;</span><span class="o">]</span> <span class="sx">%&gt;</span>
-<span class="sx">foursquare_app_push_secret: &lt;%= ENV[&#39;FOURSQUARE_PUSH_SECRET&#39;] %&gt;</span>
-</code></pre></div>
+<div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="x">foursquare_app_id: </span><span class="cp">&lt;%=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;FOURSQUARE_APP_ID&#39;</span><span class="o">]</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="x">foursquare_app_secret: </span><span class="cp">&lt;%=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;FOURSQUARE_APP_SECRET&#39;</span><span class="o">]</span> <span class="cp">%&gt;</span><span class="x"></span>
+<span class="x">foursquare_app_push_secret: </span><span class="cp">&lt;%=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;FOURSQUARE_PUSH_SECRET&#39;</span><span class="o">]</span> <span class="cp">%&gt;</span><span class="x"></span></code></pre></div>
 
 <h2 id="search-git-history-for-secrets">Search git history for secrets</h2>
 

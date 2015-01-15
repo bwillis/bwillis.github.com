@@ -4,13 +4,42 @@
  <title>A Study in Code</title>
  <link href="http://bwillis.github.io/" rel="self"/>
  <link href="http://bwillis.github.io"/>
- <updated>2014-07-28T11:12:54-07:00</updated>
+ <updated>2015-01-14T22:57:35-08:00</updated>
  <id>http://bwillis.github.io</id>
  <author>
    <name>Ben Willis</name>
    <email></email>
  </author>
 
+ 
+ <entry>
+   <title>Version Cake Introduction</title>
+   <link href="http://bwillis.github.io/2015/01/13/version-cake"/>
+   <updated>2015-01-13T00:00:00-08:00</updated>
+   <id>http://bwillis.github.io/2015/01/13/version-cake</id>
+   <content type="html">
+&lt;p&gt;&lt;a href=&quot;https://github.com/bwillis/versioncake&quot;&gt;Version Cake&lt;/a&gt; is a Ruby gem for the Rails framework. It is meant to provide a drop in solution to version views in your application. The opinion of Version Cake is that you will need to version your resources and the views are the contract to your clients so keeping the versions close to your payloads is important.&lt;/p&gt;
+
+&lt;p&gt;The novelty of Version Cake is how it versions: by using the file extension. This is the same way which you’ve always gotten magical routing to templates by action name, request format, locale or other processors (Rails 4.1 also brought a similar, though more generic concept call &lt;a href=&quot;http://edgeguides.rubyonrails.org/4_1_release_notes.html#action-pack-variants&quot;&gt;variants&lt;/a&gt;). By dropping in the Version Cake gem you can start versioning specific resources simply by renaming them &lt;code&gt;index.json.jbuilder.v2&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Version Cake follows Rails in convention over configuration: extraction of the request version is done automatically, routing to the appropriate file is handled and a set of typical defaults are set for supported versions. Of course it can all be &lt;a href=&quot;https://github.com/bwillis/versioncake#configuration&quot;&gt;configured&lt;/a&gt; when you are ready for production.&lt;/p&gt;
+
+&lt;h2&gt;What&#39;s Next?&lt;/h2&gt;
+
+&lt;p&gt;This gem has gotten a small following over the last 2+ years and I think it still fills an important niche. I’ve developed with it on different projects and it’s a great start, but after some time you feel some growing pains. These are pain points I’ve encountered that I think Version Cake can solve:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;documenting what are the versioned resources&lt;/li&gt;
+  &lt;li&gt;marking a version obsolete&lt;/li&gt;
+  &lt;li&gt;marking a version deprecated&lt;/li&gt;
+  &lt;li&gt;changing URIs to versioned resources&lt;/li&gt;
+  &lt;li&gt;alternative ways to version other than by view extension&lt;/li&gt;
+  &lt;li&gt;only Rails support&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These are all features that will (hopefully) land for v3.0. I also plan on improving the documentation as &lt;a href=&quot;https://github.com/bwillis/versioncake/blob/master/README.md&quot;&gt;one long readme&lt;/a&gt; file can be difficult to grok. You can monitor the latest changes for the majority of the work &lt;a href=&quot;https://github.com/bwillis/versioncake/tree/rack-middleware-spike&quot;&gt;on this branch&lt;/a&gt;.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Including Github Repo Code in Jekyll</title>
@@ -30,7 +59,7 @@
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;determine_line_numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;determine_line_numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil?&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil?&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
@@ -39,8 +68,7 @@
 &lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt; 
 &lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;This example is actually 3 different tags in play, two from Github Sample Tag and one built-in. The first is the &lt;code&gt;github_sample&lt;/code&gt; tag, which on it’s own just retrieves a portion of a raw Github file:&lt;/p&gt;
 
@@ -60,7 +88,7 @@ end
 
 &lt;p&gt;The second is the builtin &lt;code&gt;highlight&lt;/code&gt; block with the appropriate language format set:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;determine_line_numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;lineno&quot;&gt; 1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;determine_line_numbers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt; 2&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil?&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nil?&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt; 3&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;first&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt; 4&lt;/span&gt;     &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
@@ -69,8 +97,7 @@ end
 &lt;span class=&quot;lineno&quot;&gt; 7&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;lineno&quot;&gt; 8&lt;/span&gt; 
 &lt;span class=&quot;lineno&quot;&gt; 9&lt;/span&gt;   &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to_i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;lineno&quot;&gt;10&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;The third piece is the &lt;code&gt;github_sample_ref&lt;/code&gt; tag, which can be used on it’s own like so:&lt;/p&gt;
 
@@ -140,7 +167,7 @@ end
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;erb&quot;&gt;&lt;span class=&quot;x&quot;&gt;// This is a manifest file that&amp;#39;ll be compiled into including all the files listed below.&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-erb&quot; data-lang=&quot;erb&quot;&gt;&lt;span class=&quot;x&quot;&gt;// This is a manifest file that&amp;#39;ll be compiled into including all the files listed below.&lt;/span&gt;
 &lt;span class=&quot;x&quot;&gt;// Add new JavaScript/Coffee code in separate files in this directory and they&amp;#39;ll automatically&lt;/span&gt;
 &lt;span class=&quot;x&quot;&gt;// be included in the compiled file accessible from http://example.com/assets/application.js&lt;/span&gt;
 &lt;span class=&quot;x&quot;&gt;// It&amp;#39;s not advisable to add code directly here, but if you do, it&amp;#39;ll appear at the bottom of the&lt;/span&gt;
@@ -148,8 +175,7 @@ end
 &lt;span class=&quot;x&quot;&gt;//&lt;/span&gt;
 &lt;span class=&quot;x&quot;&gt;//= require jquery_ujs&lt;/span&gt;
 &lt;span class=&quot;x&quot;&gt;//= require_tree .&lt;/span&gt;
-&lt;span class=&quot;x&quot;&gt;//= require contacts&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;x&quot;&gt;//= require contacts&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Then you can include links to the manifest files in your layouts:&lt;/p&gt;
 
@@ -162,10 +188,9 @@ end
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;erb&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stylesheet_link_tag&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;application&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:media&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;all&amp;quot;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-erb&quot; data-lang=&quot;erb&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;stylesheet_link_tag&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;application&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:media&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;all&amp;quot;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
 
-&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;javascript_include_tag&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;application&amp;quot;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;javascript_include_tag&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;application&amp;quot;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;combining-images-sprites-and-css&quot;&gt;Combining Images (Sprites and CSS)&lt;/h3&gt;
 
@@ -180,9 +205,8 @@ end
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;scss&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;@import&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;logos/*.png&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;@include&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt; all-logos-sprites&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-scss&quot; data-lang=&quot;scss&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;@import&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;logos/*.png&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;@include&lt;/span&gt;&lt;span class=&quot;nd&quot;&gt; all-logos-sprites&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Once you have included the sprites, you can reference dynamic namespaced class names, like &lt;code&gt;logos-foursquare-powered&lt;/code&gt;.&lt;/p&gt;
 
@@ -195,8 +219,7 @@ end
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;erb&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sprite_link&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;logos-foursquare-powered&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;http://foursquare.com&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;_blank&amp;#39;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-erb&quot; data-lang=&quot;erb&quot;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sprite_link&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;logos-foursquare-powered&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;http://foursquare.com&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:target&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;_blank&amp;#39;&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;inline-images&quot;&gt;Inline images&lt;/h3&gt;
 
@@ -211,8 +234,7 @@ end
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;scss&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;background-image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;inline-image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;so-informed.png&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-scss&quot; data-lang=&quot;scss&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;background-image&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;inline-image&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;so-informed.png&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;div class=&quot;alert alert-info&quot;&gt;
 &lt;b&gt;Trade-offs&lt;/b&gt; This is typically good for smaller images that can be cached with CSS. You should ask yourself some questions like:
@@ -470,10 +492,9 @@ Coming soon...
 
 &lt;p&gt;There are many approaches to moving secrets out of code, but the general best practice is environment variables. Since secrets are commonly kept in YAML files, and they are processed with ERB, you can use ruby to inject the environment variables.&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;foursquare_app_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;%= ENV[&amp;#39;FOURSQUARE_APP_ID&amp;#39;] %&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;sx&quot;&gt;foursquare_app_secret: &amp;lt;%=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ENV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;FOURSQUARE_APP_SECRET&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;sx&quot;&gt;%&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;sx&quot;&gt;foursquare_app_push_secret: &amp;lt;%= ENV[&amp;#39;FOURSQUARE_PUSH_SECRET&amp;#39;] %&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-erb&quot; data-lang=&quot;erb&quot;&gt;&lt;span class=&quot;x&quot;&gt;foursquare_app_id: &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ENV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;FOURSQUARE_APP_ID&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;foursquare_app_secret: &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ENV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;FOURSQUARE_APP_SECRET&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;
+&lt;span class=&quot;x&quot;&gt;foursquare_app_push_secret: &lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;%=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ENV&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;FOURSQUARE_PUSH_SECRET&amp;#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;cp&quot;&gt;%&amp;gt;&lt;/span&gt;&lt;span class=&quot;x&quot;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;search-git-history-for-secrets&quot;&gt;Search git history for secrets&lt;/h2&gt;
 

@@ -60,7 +60,7 @@
   </div>
 </div>
 
-<div class="highlight"><pre><code class="erb"><span class="x">// This is a manifest file that&#39;ll be compiled into including all the files listed below.</span>
+<div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="x">// This is a manifest file that&#39;ll be compiled into including all the files listed below.</span>
 <span class="x">// Add new JavaScript/Coffee code in separate files in this directory and they&#39;ll automatically</span>
 <span class="x">// be included in the compiled file accessible from http://example.com/assets/application.js</span>
 <span class="x">// It&#39;s not advisable to add code directly here, but if you do, it&#39;ll appear at the bottom of the</span>
@@ -68,8 +68,7 @@
 <span class="x">//</span>
 <span class="x">//= require jquery_ujs</span>
 <span class="x">//= require_tree .</span>
-<span class="x">//= require contacts</span>
-</code></pre></div>
+<span class="x">//= require contacts</span></code></pre></div>
 
 <p>Then you can include links to the manifest files in your layouts:</p>
 
@@ -82,10 +81,9 @@
   </div>
 </div>
 
-<div class="highlight"><pre><code class="erb"><span class="cp">&lt;%=</span> <span class="n">stylesheet_link_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="ss">:media</span> <span class="o">=&gt;</span> <span class="s2">&quot;all&quot;</span> <span class="cp">%&gt;</span><span class="x"></span>
+<div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="n">stylesheet_link_tag</span> <span class="s2">&quot;application&quot;</span><span class="p">,</span> <span class="ss">:media</span> <span class="o">=&gt;</span> <span class="s2">&quot;all&quot;</span> <span class="cp">%&gt;</span><span class="x"></span>
 
-<span class="cp">&lt;%=</span> <span class="n">javascript_include_tag</span> <span class="s2">&quot;application&quot;</span> <span class="cp">%&gt;</span><span class="x"></span>
-</code></pre></div>
+<span class="cp">&lt;%=</span> <span class="n">javascript_include_tag</span> <span class="s2">&quot;application&quot;</span> <span class="cp">%&gt;</span><span class="x"></span></code></pre></div>
 
 <h3 id="combining-images-sprites-and-css">Combining Images (Sprites and CSS)</h3>
 
@@ -100,9 +98,8 @@
   </div>
 </div>
 
-<div class="highlight"><pre><code class="scss"><span class="lineno">1</span> <span class="k">@import</span> <span class="s2">&quot;logos/*.png&quot;</span><span class="p">;</span>
-<span class="lineno">2</span> <span class="k">@include</span><span class="nd"> all-logos-sprites</span><span class="p">;</span>
-</code></pre></div>
+<div class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="lineno">1</span> <span class="k">@import</span> <span class="s2">&quot;logos/*.png&quot;</span><span class="p">;</span>
+<span class="lineno">2</span> <span class="k">@include</span><span class="nd"> all-logos-sprites</span><span class="p">;</span></code></pre></div>
 
 <p>Once you have included the sprites, you can reference dynamic namespaced class names, like <code>logos-foursquare-powered</code>.</p>
 
@@ -115,8 +112,7 @@
   </div>
 </div>
 
-<div class="highlight"><pre><code class="erb"><span class="cp">&lt;%=</span> <span class="n">sprite_link</span> <span class="s2">&quot;logos-foursquare-powered&quot;</span><span class="p">,</span> <span class="s2">&quot;http://foursquare.com&quot;</span><span class="p">,</span> <span class="ss">:target</span> <span class="o">=&gt;</span> <span class="s1">&#39;_blank&#39;</span> <span class="cp">%&gt;</span><span class="x"></span>
-</code></pre></div>
+<div class="highlight"><pre><code class="language-erb" data-lang="erb"><span class="cp">&lt;%=</span> <span class="n">sprite_link</span> <span class="s2">&quot;logos-foursquare-powered&quot;</span><span class="p">,</span> <span class="s2">&quot;http://foursquare.com&quot;</span><span class="p">,</span> <span class="ss">:target</span> <span class="o">=&gt;</span> <span class="s1">&#39;_blank&#39;</span> <span class="cp">%&gt;</span><span class="x"></span></code></pre></div>
 
 <h3 id="inline-images">Inline images</h3>
 
@@ -131,8 +127,7 @@
   </div>
 </div>
 
-<div class="highlight"><pre><code class="scss"><span class="lineno">1</span> <span class="na">background-image</span><span class="o">:</span> <span class="nf">inline-image</span><span class="p">(</span><span class="s1">&#39;</span><span class="s2">so-informed.png&#39;</span><span class="p">);</span>
-</code></pre></div>
+<div class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="lineno">1</span> <span class="na">background-image</span><span class="o">:</span> <span class="nf">inline-image</span><span class="p">(</span><span class="s1">&#39;</span><span class="s2">so-informed.png&#39;</span><span class="p">);</span></code></pre></div>
 
 <div class="alert alert-info">
 <b>Trade-offs</b> This is typically good for smaller images that can be cached with CSS. You should ask yourself some questions like:
