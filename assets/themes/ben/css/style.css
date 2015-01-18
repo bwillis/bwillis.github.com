@@ -18,6 +18,12 @@ body {
     color: white;
 }
 
+.img-attribution {
+    margin: 30px;
+    text-align: center;
+    font-style: italic;
+}
+
 @media screen and (max-width: 980px) {
     .img-overlay {
         font-size: 16px;
