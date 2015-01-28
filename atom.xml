@@ -4,7 +4,7 @@
  <title>A Study in Code</title>
  <link href="http://bwillis.github.io/" rel="self"/>
  <link href="http://bwillis.github.io"/>
- <updated>2015-01-18T14:21:40-08:00</updated>
+ <updated>2015-01-28T00:39:59-08:00</updated>
  <id>http://bwillis.github.io</id>
  <author>
    <name>Ben Willis</name>
@@ -37,7 +37,7 @@
   &lt;li&gt;only Rails support&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;These are all features that will (hopefully) land for v3.0. I also plan on improving the documentation as &lt;a href=&quot;https://github.com/bwillis/versioncake/blob/master/README.md&quot;&gt;one long readme&lt;/a&gt; file can be difficult to grok. You can monitor the latest changes for the majority of the work &lt;a href=&quot;https://github.com/bwillis/versioncake/tree/rack-middleware-spike&quot;&gt;on this branch&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;These are all features that will (hopefully) land for v3.0. I also plan on improving the documentation as &lt;a href=&quot;https://github.com/bwillis/versioncake/blob/master/README.md&quot;&gt;one long readme&lt;/a&gt; file can be difficult to grok. You can monitor the latest changes for the majority of the work &lt;a href=&quot;https://github.com/bwillis/versioncake/tree/versioned-middleware&quot;&gt;on this branch&lt;/a&gt;.&lt;/p&gt;
 </content>
  </entry>
  
